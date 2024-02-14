@@ -1,0 +1,7 @@
+.entete{
+
+    h1 {
+        font-weight: 300;
+        font-size:max(50px, 4vw);
+    }
+}
