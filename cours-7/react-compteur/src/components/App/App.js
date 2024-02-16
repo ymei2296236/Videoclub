@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Compteur from '../Compteur/Compteur';
 import Entete from '../Entete/Entete';
+import Total from '../Total/Total';
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   {
     setTotal((totalActuel) => totalActuel + valeurCompteur);
   }
+
   
   const compteurs = aValeursInitiales.map((valeurInitiale, index) =>
   {
@@ -23,9 +25,11 @@ function App() {
     <Entete />
     <main>
       {compteurs}
+      <Total total={total}/>
     </main>
     </>
   );
+
 }
 
 export default App;
