@@ -1,10 +1,18 @@
 import './Accueil.css';
+import accueil from './accueil.json';
 
 function Accueil() {
+
+  const donnees = accueil.map((donnee, index) => 
+  {
+    return <p key={index}> {donnee} </p>
+  })
+
   return (
     <main>
-        Accueil
-        {/* le contenu du fichier accueil.json import */}
+        <div>
+        {donnees}
+      </div>
     </main>
   );
 }
