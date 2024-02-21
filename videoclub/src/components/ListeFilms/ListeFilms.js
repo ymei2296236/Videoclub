@@ -1,9 +1,13 @@
 import TuileFilm from '../TuileFilm/TuileFilm';
 import './ListeFilms.css';
-import listeFilms from './listeFilms.json';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function ListeFilms() {
+
+  // const urlListeFilms = 'https://cadriel-front.onrender.com/films';
+  const urlListeFilms = 'https://four1f-node-api.onrender.com/films';
+  const [listeFilms, setListeFilms] = useState([]);
 
   // const listeFilms = [
   //   { titre:'Film 1', realisateur: 'Billy', annee:'2024' },
@@ -11,17 +15,51 @@ function ListeFilms() {
   //   { titre:'Film 3', realisateur: 'Milly', annee:'1999' }
   // ];
 
+  /** demo useEffect */
+  // const [etat, setEtat] = useState(true);
+  // const [etatTest, setEtatTest] = useState(false);
+
+  // ecoute sur à 'etat'
+  // useEffect(()=>
+  // {
+  //  console.log('rendu');
+  // }, [etat]);
+
+  useEffect(()=>
+  {
+    // console.log('rendu');
+    fetch(urlListeFilms)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setListeFilms(data);
+      } )
+  // [] executer dans la première rendu
+  }, []);
+
   const tuilesFilm = listeFilms.map((film, index)=>{
-    return  <Link key={index} to={`/film/${film.id}`} activeClassName="active">
-              <TuileFilm key={index} data={film} />
+    return  <Link key={index} data={film} to={`/film/${film.id}`}  className="liste__tuile">
+              <TuileFilm key={index} data={film}/>
             </Link>
     // return <TuileFilm key={index} data={film} />
   })
 
   return (
     <main>
+      {/* <div>
+        <button onClick={()=>setEtat(!etat)}> Change état</button>
+        {JSON.stringify(etat)}
+      </div>
+
+      <div>
+        <button onClick={()=>setEtatTest(!etatTest)}> Change état</button>
+        {JSON.stringify(etatTest)}
+      </div> */}
+
       <h2>Liste des films</h2>
-      {tuilesFilm}
+      <div className="liste" >
+        {tuilesFilm}
+      </div>
     </main>
   );
 }

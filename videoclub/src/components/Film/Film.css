@@ -1,0 +1,6 @@
+.film {
+
+    & .film__img{
+        max-width: max(40vw, 600px);
+    }
+}

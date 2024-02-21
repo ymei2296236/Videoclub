@@ -11,11 +11,12 @@ function TuileFilm(props) {
   // })
 
   return (
-    <div>
-        <h2>{props.data.titre}</h2>
-        <p>{props.data.realisateur}</p>
-        <p>{props.data.annee}</p>
-    </div>
+       <article>
+        <div>
+          <img src={`img/${props.data.titreVignette}`} alt={props.data.titre}/>
+        </div>
+          <h2>{props.data.titre}</h2> 
+       </article>
   );
 }
 

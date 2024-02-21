@@ -1,5 +1,0 @@
-[
-    {"id": 1, "titre":"Film 1", "realisateur": "Billy", "annee":2024 },
-    {"id": 2, "titre":"Film 2", "realisateur": "Willy", "annee":2000 },
-    {"id": 3, "titre":"Film 3", "realisateur": "Milly", "annee":1999 }
-  ]
