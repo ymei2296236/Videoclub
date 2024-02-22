@@ -5,15 +5,9 @@ import { useEffect, useState } from 'react';
 
 function ListeFilms() {
 
-  // const urlListeFilms = 'https://cadriel-front.onrender.com/films';
-  const urlListeFilms = 'https://four1f-node-api.onrender.com/films';
+  const urlListeFilms = 'https://cadriel-front.onrender.com/films';
+  // const urlListeFilms = 'https://four1f-node-api.onrender.com/films';
   const [listeFilms, setListeFilms] = useState([]);
-
-  // const listeFilms = [
-  //   { titre:'Film 1', realisateur: 'Billy', annee:'2024' },
-  //   { titre:'Film 2', realisateur: 'Willy', annee:'2000' },
-  //   { titre:'Film 3', realisateur: 'Milly', annee:'1999' }
-  // ];
 
   /** demo useEffect */
   // const [etat, setEtat] = useState(true);

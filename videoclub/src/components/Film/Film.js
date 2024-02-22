@@ -1,13 +1,12 @@
 import './Film.css';
 import { useParams } from 'react-router-dom';
-// import TuileFilm from '../TuileFilm/TuileFilm';
 import { useEffect, useState } from 'react';
 
 
 function Film() 
 {
   const {id} = useParams();
-  const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`;
+  const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
   const [film, setFilm] = useState([]);
   
   useEffect(()=>
@@ -18,7 +17,7 @@ function Film()
         // console.log(data);
         setFilm(data);
       } )
-  }, []);
+  }, [urlFilm]);
 
 
 
