@@ -4,8 +4,8 @@ import './ListeFilms.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-function ListeFilms() {
-
+function ListeFilms() 
+{
   // const urlListeFilms = 'data/titre-asc.json';
   // const urlListeFilms = 'https://cadriel-front.onrender.com/films';
   // const urlListeFilms = 'https://four1f-node-api.onrender.com/films'; // serveur de Simon
@@ -26,7 +26,7 @@ function ListeFilms() {
         setListeFilms(data);
       } )
   // [] executer dans la première rendu
-  }, [listeFilms]);
+  }, [urlListeFilms]);
 
 
   
@@ -34,8 +34,8 @@ function ListeFilms() {
    * Gère l'url de l'API
    * @param {String} nouveauUrl 
   */
- function handleUrl(nouveauUrl)
- {
+  function handleUrl(nouveauUrl)
+  {
    setUrlListeFilms(() => nouveauUrl)
   }
 
@@ -46,7 +46,6 @@ function ListeFilms() {
   {
     return  <Link key={index} data={film} to={`/film/${film.id}`}  className="liste__tuile">
               <TuileFilm key={index} data={film} urlListeFilms={urlListeFilms}/>
-              {/* <TuileFilm key={index} data={urlListeFilms}/> */}
             </Link>
   })
   

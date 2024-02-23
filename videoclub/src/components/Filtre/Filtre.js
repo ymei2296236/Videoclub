@@ -1,16 +1,8 @@
 import './Filtre.css';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import TuileFilm from '../TuileFilm/TuileFilm';
 
 
 function Filtre(props) 
 {
-    const urlListeFilms = 'data/titre-asc.json';
-
-    const [urlFiltre, setUrlFiltre] = useState(urlListeFilms);
-
-
     /**
      * Récupère la valeur du filtre cliqué
      * @param {HTMLElement} e 
@@ -21,9 +13,6 @@ function Filtre(props)
 
         switch(filtre)
         {
-            case 'titre-asc' : 
-                props.handleUrl('data/titre-asc.json');
-                break;
             case 'titre-desc' : 
                 props.handleUrl('data/titre-desc.json');
                 break;
@@ -39,6 +28,8 @@ function Filtre(props)
             case 'annee-desc' : 
                 props.handleUrl('data/annee-desc.json');
                 break;
+            default:
+                props.handleUrl('data/titre-asc.json');
         }
     }
 
@@ -53,12 +44,11 @@ function Filtre(props)
 
         for (let i = 0, l = urlsActive.length; i < l; i++) 
         {
-            if(urlsActive[i].dataset.jsFiltre != filtre) urlsActive[i].classList.remove('active');
+            if(urlsActive[i].dataset.jsFiltre !== filtre) urlsActive[i].classList.remove('active');
         }
 
         e.target.classList.add('active');
     }
-
 
     return (
         <ul>
