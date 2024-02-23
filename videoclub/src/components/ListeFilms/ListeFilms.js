@@ -1,27 +1,24 @@
 import TuileFilm from '../TuileFilm/TuileFilm';
+import Filtre from '../Filtre/Filtre';
 import './ListeFilms.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function ListeFilms() {
 
-  const urlListeFilms = 'https://cadriel-front.onrender.com/films';
-  // const urlListeFilms = 'https://four1f-node-api.onrender.com/films';
+  // const urlListeFilms = 'data/titre-asc.json';
+  // const urlListeFilms = 'https://cadriel-front.onrender.com/films';
+  // const urlListeFilms = 'https://four1f-node-api.onrender.com/films'; // serveur de Simon
+
   const [listeFilms, setListeFilms] = useState([]);
 
-  /** demo useEffect */
-  // const [etat, setEtat] = useState(true);
-  // const [etatTest, setEtatTest] = useState(false);
+  const [urlListeFilms, setUrlListeFilms] = useState('data/titre-asc.json');
 
-  // ecoute sur à 'etat'
-  // useEffect(()=>
-  // {
-  //  console.log('rendu');
-  // }, [etat]);
-
+  /**
+   * Fait un appel à la base de données suite au changement de listFilms
+   */ 
   useEffect(()=>
   {
-    // console.log('rendu');
     fetch(urlListeFilms)
       .then((response) => response.json())
       .then((data) => {
@@ -29,30 +26,41 @@ function ListeFilms() {
         setListeFilms(data);
       } )
   // [] executer dans la première rendu
-  }, []);
+  }, [listeFilms]);
 
-  const tuilesFilm = listeFilms.map((film, index)=>{
+
+  
+  /**
+   * Gère l'url de l'API
+   * @param {String} nouveauUrl 
+  */
+ function handleUrl(nouveauUrl)
+ {
+   setUrlListeFilms(() => nouveauUrl)
+  }
+
+  /**
+   * Création des tuilesFilm
+   */
+  const tuilesFilm = listeFilms.map((film, index)=>
+  {
     return  <Link key={index} data={film} to={`/film/${film.id}`}  className="liste__tuile">
-              <TuileFilm key={index} data={film}/>
+              <TuileFilm key={index} data={film} urlListeFilms={urlListeFilms}/>
+              {/* <TuileFilm key={index} data={urlListeFilms}/> */}
             </Link>
   })
-
+  
   return (
     <main>
-      {/* <div>
-        <button onClick={()=>setEtat(!etat)}> Change état</button>
-        {JSON.stringify(etat)}
-      </div>
-
-      <div>
-        <button onClick={()=>setEtatTest(!etatTest)}> Change état</button>
-        {JSON.stringify(etatTest)}
-      </div> */}
 
       <h2>Liste des films</h2>
+
+      <Filtre handleUrl={handleUrl}/>
+
       <div className="liste" >
         {tuilesFilm}
       </div>
+      
     </main>
   );
 }

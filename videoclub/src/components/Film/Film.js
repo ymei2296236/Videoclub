@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 function Film() 
 {
   const {id} = useParams();
-  const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
+  const urlFilm = `data/titre-asc.json/${id}`;
+  // const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
   const [film, setFilm] = useState([]);
 
   const genres = film.genres?.map((genre, index)=>{
@@ -29,6 +30,7 @@ function Film()
 
     <main className="film">
       <h2>Détails du film</h2>
+
       <div>
         <div className="film__img">
           <img src={`../img/${film.titreVignette}`} alt={film.titre}/>
