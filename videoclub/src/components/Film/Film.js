@@ -8,7 +8,11 @@ function Film()
   const {id} = useParams();
   const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
   const [film, setFilm] = useState([]);
-  
+
+  const genres = film.genres?.map((genre, index)=>{
+    return  <small key={index}>{genre} | </small>
+  })
+
   useEffect(()=>
   {
     fetch(urlFilm)
@@ -31,6 +35,7 @@ function Film()
         </div>
         <h2>{film.titre}</h2>
         <p>{film.realisation}</p>
+        <p>{genres}</p>
         <p>{film.annee}</p>
       </div>
   </main>

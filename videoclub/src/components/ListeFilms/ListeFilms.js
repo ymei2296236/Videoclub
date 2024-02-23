@@ -35,7 +35,6 @@ function ListeFilms() {
     return  <Link key={index} data={film} to={`/film/${film.id}`}  className="liste__tuile">
               <TuileFilm key={index} data={film}/>
             </Link>
-    // return <TuileFilm key={index} data={film} />
   })
 
   return (

@@ -1,14 +1,7 @@
 import './TuileFilm.css';
-// import listeFilms from '../ListeFilms/listeFilms.json';
-// import Film from '../Film/Film';
-// import { Link } from 'react-router-dom';
+
 
 function TuileFilm(props) {
-
-
-  // const film = ((listeFilms)=>{
-  //   return <Film key={props.data.id} data={listeFilms[props.data.id]} />;
-  // })
 
   return (
        <article>
