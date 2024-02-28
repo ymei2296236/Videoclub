@@ -23,7 +23,7 @@ function ListeFilms()
     fetch(urlListeFilms)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setListeFilms(data);
       } )
   // [] executer dans la première rendu
