@@ -32,7 +32,8 @@ function Film()
         }
         else
         {
-          let noteMoyenne = Math.round(noteTotale.reduce((a, b) => a+b, 0)/ noteTotale.length),
+          // Référence : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+          let noteMoyenne = (noteTotale.reduce((a, b) => a+b, 0)/ noteTotale.length).toFixed(2),
             nbVotes = noteTotale.length;
           // console.log(noteMoyenne);
           setMoyenne(noteMoyenne);
@@ -85,7 +86,7 @@ function Film()
         }
         else
         {
-          let noteMoyenne = Math.round(noteTotale.reduce((a, b) => a+b, 0)/ noteTotale.length),
+          let noteMoyenne = (noteTotale.reduce((a, b) => a+b, 0)/ noteTotale.length).toFixed(2),
             nbVotes = noteTotale.length;
           // console.log(noteMoyenne);
           setMoyenne(noteMoyenne);
