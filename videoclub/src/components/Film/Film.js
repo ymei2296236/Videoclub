@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react';
 function Film() 
 {
   const {id} = useParams();
-  const urlFilm = `data/titre-asc.json/${id}`;
-  // const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
+  // const urlFilm = `data/titre-asc.json/${id}`;
+  const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
   const [film, setFilm] = useState([]);
 
   const genres = film.genres?.map((genre, index)=>{
@@ -19,7 +19,7 @@ function Film()
     fetch(urlFilm)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setFilm(data);
       } )
   }, [urlFilm]);

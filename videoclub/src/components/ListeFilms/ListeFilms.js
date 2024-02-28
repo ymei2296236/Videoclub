@@ -12,7 +12,8 @@ function ListeFilms()
 
   const [listeFilms, setListeFilms] = useState([]);
 
-  const [urlListeFilms, setUrlListeFilms] = useState('data/titre-asc.json');
+  // const [urlListeFilms, setUrlListeFilms] = useState('data/titre-asc.json');
+  const [urlListeFilms, setUrlListeFilms] = useState('https://cadriel-front.onrender.com/films');
 
   /**
    * Fait un appel à la base de données suite au changement de listFilms
@@ -22,7 +23,7 @@ function ListeFilms()
     fetch(urlListeFilms)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setListeFilms(data);
       } )
   // [] executer dans la première rendu
