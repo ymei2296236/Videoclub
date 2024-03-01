@@ -1,0 +1,56 @@
+@font-face {
+	font-family: "Lilita One";
+	src: url("../../fonts/Lilita_One/LilitaOne-Regular.ttf");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Be Vietnam Pro";
+	src: url("../../fonts/Be_Vietnam_Pro/BeVietnamPro-Regular.ttf");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Be Vietnam Pro";
+	src: url("../../fonts/Be_Vietnam_Pro/BeVietnamPro-SemiBold.ttf");
+	font-weight: 600;
+	font-style: bold;
+}
+
+:root {
+	--police-titre: "Lilita One", serif;
+	--police-texte: "Be Vietnam Pro", sans-serif;
+
+	--text-xs: 0.875rem;
+	--text-sm: 1rem;
+	--text-md: 1.2rem;
+	--text-lg: 2rem;
+}
+
+h1 {
+	font-family: var(--police-titre);
+	font-size: var(--text-lg);
+	color: var(--coul-texte);
+}
+
+h2 {
+	font-family: var(--police-titre);
+	font-size: var(--text-md);
+	color: var(--coul-texte);
+}
+
+p {
+	font-family: var(--police-texte);
+	font-size: var(--text-sm);
+	font-weight: normal;
+	color: var(--coul-texte);
+}
+
+.bold {
+	font-family: var(--police-texte);
+	font-size: var(--text-sm);
+	font-weight: bold;
+	color: var(--coul-texte);
+}

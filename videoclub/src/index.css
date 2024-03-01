@@ -8,10 +8,11 @@
 
 /* ELEMENTS */
 @import url(./styles/4-elements/typographies.css);
+@import url(./styles/4-elements/couleurs.css);
+@import url(./styles/4-elements/rythme.css);
 
 /* OBJECTS */
 @import url(./styles/5-objects/spacing.css);
 @import url(./styles/5-objects/wrapper.css);
-
 
 /* UTILITIES */
