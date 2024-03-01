@@ -57,14 +57,13 @@ function Film()
 
   return (
     <main className="film">
-      <h2>Détails du film</h2>
 
       <div>
         <div className="film__img">
           <img src={`../img/${film.titreVignette}`} alt={film.titre}/>
         </div>
 
-        <h2>{film.titre}</h2>
+        <h1>{film.titre}</h1>
         <p>{film.realisation}</p>
         <p>{genres}</p>
         <p>{film.annee}</p>

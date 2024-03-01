@@ -39,6 +39,8 @@ h2 {
 	font-family: var(--police-titre);
 	font-size: var(--text-md);
 	color: var(--coul-texte);
+	letter-spacing: 1px;
+	text-transform: uppercase;
 }
 
 p {
