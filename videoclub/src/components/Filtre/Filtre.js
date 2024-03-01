@@ -13,23 +13,23 @@ function Filtre(props)
 
         switch(filtre)
         {
+            case 'titre-asc' : 
+                props.handleUrl('https://cadriel-front.onrender.com/films?tri=titre');
+                break;
             case 'titre-desc' : 
-                props.handleUrl('data/titre-desc.json');
+                props.handleUrl('https://cadriel-front.onrender.com/films?tri=titre&ordre=desc');
                 break;
             case 'realisation-asc' : 
-                props.handleUrl('data/realisation-asc.json');
+                props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation');
                 break;
             case 'realisation-desc' : 
-                props.handleUrl('data/realisation-desc.json');
-                break;
-            case 'annee-asc' : 
-                props.handleUrl('data/annee-asc.json');
+                props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc');
                 break;
             case 'annee-desc' : 
-                props.handleUrl('data/annee-desc.json');
+                props.handleUrl('https://cadriel-front.onrender.com/films?tri=annee&ordre=desc');
                 break;
             default:
-                props.handleUrl('data/titre-asc.json');
+                props.handleUrl('https://cadriel-front.onrender.com/films?tri=annee');
         }
     }
 
@@ -52,12 +52,12 @@ function Filtre(props)
 
     return (
         <ul>
-            <li data-js-filtre="titre-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>Titre alphabétique(A-Z)</li>
-            <li data-js-filtre="titre-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>Titre alphabétique(Z-A)</li>
-            <li data-js-filtre="realisation-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>Réalisateur alphabétique(A-Z)</li>
-            <li data-js-filtre="realisation-desc"  onClick={(e)=>{filtre(e); gereActive(e)}}>Réalisateur alphabétique(Z-A)</li>
-            <li data-js-filtre="annee-asc"  onClick={(e)=>{filtre(e); gereActive(e)}}>Années de production(Asc)</li>
-            <li data-js-filtre="annee-desc"  onClick={(e)=>{filtre(e); gereActive(e)}}>Années de production(Desc)</li>
+            <li data-js-filtre="annee-asc"  onClick={(e)=>{filtre(e); gereActive(e)}}>Années de production (moins récent)</li>
+            <li data-js-filtre="annee-desc"  onClick={(e)=>{filtre(e); gereActive(e)}}>Années de production (plus récent)</li>
+            <li data-js-filtre="titre-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>Nom du film (A-Z)</li>
+            <li data-js-filtre="titre-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>Nom du film (Z-A)</li>
+            <li data-js-filtre="realisation-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>Nom du réalisateur(A-Z)</li>
+            <li data-js-filtre="realisation-desc"  onClick={(e)=>{filtre(e); gereActive(e)}}>Nom du réalisateur(Z-A)</li>
         </ul>
     );
 }

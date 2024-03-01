@@ -10,7 +10,7 @@
 
     .liste__tuile {
         display: flex;
-        width:calc( 33% - var(--space-base)*3);
+        flex: min(100vw, calc( 33% - var(--space-base)*3));
         border: 1px solid var(--color-primray);
         padding:calc(var(--space-base)*3);
     }

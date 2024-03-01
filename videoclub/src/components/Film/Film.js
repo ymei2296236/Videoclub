@@ -1,11 +1,14 @@
 import './Film.css';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Vote from '../Vote/Vote';
+import { AppContext} from '../App/App';
 
 
-function Film() 
+function Film(props) 
 {
+  const context = useContext(AppContext);
+
   // Afficher les infos du film par son id au chargement de la page
   const {id} = useParams();
   const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
@@ -54,6 +57,61 @@ function Film()
     }
   }
 
+  let blocAjoutCommentaire;
+
+  if(context.estLog)
+  {
+    blocAjoutCommentaire = <form onSubmit={soumettreCommentaire}>
+                              <textarea placeholder='Ajouter votre commentaire'></textarea>
+                              <button>Soumettre</button>
+                          </form>
+  }
+
+    // Soumettre la note à la BD
+    async function soumettreCommentaire(e)
+    {
+      e.preventDefault();
+      console.log(e.target);
+
+      let aCommentaires;
+
+      // Si c'est la première note
+      if(!film.aCommentaires)
+      {
+          aCommentaires = [{ commentaire: 'Je suis un commentaire', usager: context.usager}];
+      }
+      else
+      {
+          aCommentaires = film.aCommentaires;
+          aCommentaires.push({ commentaire: 'Je suis un commentaire', usager: context.usager});
+      }
+
+      // appelAsync()
+      const oOptions = 
+      {
+          method: 'PUT',
+          headers: 
+          {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({commentaires: aCommentaires})
+          // body: JSON.stringify(data)
+      }
+
+      // PUT pour modifier le champ de notes du film 
+      let putCommentaire = await fetch(urlFilm, oOptions),
+      // GET pour afficher à nouveau les votes 
+          getFilm = await fetch(urlFilm);
+  
+      Promise.all([putCommentaire, getFilm])
+          .then(respone => respone[1].json())
+          .then((data) => {
+          //   console.log(data);
+              setFilm(data);
+          })
+        
+    }
+
 
   return (
     <main className="film">
@@ -71,6 +129,8 @@ function Film()
         <p>Moyenne : {moyenne} </p>
         <p>Nombre de { nbVotes === 1 ? 'vote' : 'votes' }  : {nbVotes} </p>
         <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm}/>
+
+        {blocAjoutCommentaire}
       </div>
   </main>
   );

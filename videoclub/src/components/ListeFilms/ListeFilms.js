@@ -10,6 +10,7 @@ function ListeFilms()
   // const urlListeFilms = 'https://cadriel-front.onrender.com/films';
   // const urlListeFilms = 'https://four1f-node-api.onrender.com/films'; // serveur de Simon
 
+  // useState fait un rendu dès que l'état changé 
   const [listeFilms, setListeFilms] = useState([]);
 
   // const [urlListeFilms, setUrlListeFilms] = useState('data/titre-asc.json');
@@ -26,7 +27,8 @@ function ListeFilms()
         // console.log(data);
         setListeFilms(data);
       } )
-  // [] executer dans la première rendu
+  // [] executer seulement dans la première rendu
+  // [urlListeFilms] executer chaque fois 'urlListeFilms' se change
   }, [urlListeFilms]);
 
 
