@@ -1,13 +1,13 @@
 .entete__container {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 	background-color: var(--coul-primary);
-	gap: var(--espace-half);
 	padding: var(--espace-1);
 
 	.entete__nav {
 		display: flex;
 		align-items: center;
+		margin-right: var(--espace-2);
 
 		.entete__menu {
 			display: flex;

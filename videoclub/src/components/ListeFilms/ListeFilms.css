@@ -8,15 +8,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--espace-half);
-	justify-content: space-between;
+	/* justify-content: space-evenly; */
 
 	.liste__tuile {
 		display: flex;
-		flex: min(
-			calc(var(--width-mobile) / 2 - var(--espace-half)),
-			calc(var(--width-ecran) / 3)
-		);
+		flex: calc(var(--width-mobile) / 2 - var(--espace-quart));
+		/* flex: min(
+			calc(var(--width-mobile) / 2 - var(--espace-quart)),
+			calc(var(--width-ecran) / 3 - var(--espace-quart))
+		); */
 		flex-grow: 0;
+		margin-bottom: var(--espace-1);
 
 		.liste__containerImg {
 			aspect-ratio: 2 / 3;

@@ -25,8 +25,6 @@ function Entete(props)
         <input type="text" name="usager" placeholder="nom de l'usager"></input>
         <button className="btn btn-secondary">Login</button>
       </form>
-
-
     </header>
   );
 }
