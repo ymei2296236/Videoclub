@@ -11,19 +11,21 @@ function Entete(props)
   console.log(props);
 
   return (
-    <header>
-        <NavLink to="/"><h1> Videoclub </h1></NavLink>
-      <nav>
-        {/* {props.logging.estLog? <NavLink to="/admin"><h2>Admin</h2></NavLink>: '' } */}
-        {context.estLog? <NavLink to="/admin"><h2>Admin</h2></NavLink>: '' }
+    <header className='entete__container'>
+      <nav className='entete__nav'>
+        <NavLink to="/"><h1> Video Club </h1></NavLink>
+        <div className='entete__menu'>
+          <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
+          {/* {props.logging.estLog? <NavLink to="/admin"><h2>Admin</h2></NavLink>: '' } */}
+          {context.estLog? <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>: '' }
 
-        <NavLink to="/liste-films"><h2>Liste des films</h2></NavLink>
+        </div>
       </nav>
-
-      <form onSubmit={props.handleLogin}>
+      <form className='entete__form' onSubmit={props.handleLogin}>
         <input type="text" name="usager" placeholder="nom de l'usager"></input>
-        <button>Login</button>
+        <button className="btn btn-secondary">Login</button>
       </form>
+
 
     </header>
   );

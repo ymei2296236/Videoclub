@@ -54,10 +54,10 @@ function ListeFilms()
   
   return (
     <main>
-
-      <h2>Liste des films</h2>
-
-      <Filtre handleUrl={handleUrl}/>
+      <div>
+        <p className='tri'><span className='btn btn-dark'>Trier par</span> <span>Année de production</span></p>
+        <Filtre handleUrl={handleUrl}/>
+      </div>
 
       <div className="liste" >
         {tuilesFilm}

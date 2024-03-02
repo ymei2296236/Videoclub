@@ -19,25 +19,15 @@
 	font-style: bold;
 }
 
-:root {
-	--police-titre: "Lilita One", serif;
-	--police-texte: "Be Vietnam Pro", sans-serif;
-
-	--text-xs: 0.875rem;
-	--text-sm: 1rem;
-	--text-md: 1.2rem;
-	--text-lg: 2rem;
-}
-
 h1 {
 	font-family: var(--police-titre);
-	font-size: var(--text-lg);
+	font-size: var(--text-md);
 	color: var(--coul-texte);
 }
 
 h2 {
 	font-family: var(--police-titre);
-	font-size: var(--text-md);
+	font-size: var(--text-sm);
 	color: var(--coul-texte);
 	letter-spacing: 1px;
 	text-transform: uppercase;
