@@ -8,23 +8,32 @@ function Entete(props)
 {
   const context = useContext(AppContext);
 
-  console.log(props);
+  // console.log(props);
 
   return (
     <header className='entete__container'>
+
       <nav className='entete__nav'>
+
         <NavLink to="/"><h1> Video Club </h1></NavLink>
+
         <div className='entete__menu'>
           <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
           {/* {props.logging.estLog? <NavLink to="/admin"><h2>Admin</h2></NavLink>: '' } */}
-          {context.estLog? <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>: '' }
-
+          {context.estLog?
+            <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
+          : '' }
         </div>
+
       </nav>
-      <form className='entete__form' onSubmit={props.handleLogin}>
-        <input type="text" name="usager" placeholder="nom de l'usager"></input>
-        <button className="btn btn-secondary">Login</button>
-      </form>
+
+      {!context.estLog?
+        <form className='entete__form' onSubmit={props.handleLogin}>
+          <input type="text" name="usager" placeholder="nom de l'usager"></input>
+          <button className="btn btn-secondary">Login</button>
+        </form>
+      : ''}
+
     </header>
   );
 }

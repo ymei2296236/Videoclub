@@ -18,16 +18,19 @@ function App() {
   function login(e)
   {
     e.preventDefault();
+    // console.log(e.target.usager);
 
     if(e.target.usager.value === 'admin') 
     {
-      console.log(e.target.usager.value);
+      // console.log(e.target.usager.value);
       // estLog(prevEstLog => !prevEstLog);
       // setLogging({estLog:true, usager: e.target.usager.value});
       setLogging(logging => ({...logging, estLog: true, usager: e.target.usager.value}));
       e.target.reset(); // si c'est la bonne valeur, réinitialiser le champs
     }
   }
+
+  
 
   return (
     // Tous les components dans AppContext auront accèss au logging

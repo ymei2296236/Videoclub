@@ -14,10 +14,10 @@ function Vote(props)
     }
 
     // Soumettre la note à la BD
+    let aNotes =[];
+
     async function soumettreNote()
     {
-        let aNotes =[];
-
         // Si la note choisie est valide
         if (vote !== undefined)
         {
@@ -32,27 +32,7 @@ function Vote(props)
                 aNotes.push(parseInt(vote));
             }
 
-            const oOptions = 
-            {
-                method: 'PUT',
-                headers: 
-                {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({notes: aNotes})
-            }
-
-            // PUT pour modifier le champ de notes du film 
-            let putNote = await fetch(props.urlFilm, oOptions),
-            // GET pour afficher à nouveau les votes 
-                getFilm = await fetch(props.urlFilm);
-        
-            Promise.all([putNote, getFilm])
-                .then(respone => respone[1].json())
-                .then((data) => {
-                //   console.log(data);
-                    props.handleFilm(data);
-                })
+            props.appelAsync({notes: aNotes});
         }
     }
 
