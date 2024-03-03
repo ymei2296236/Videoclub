@@ -24,7 +24,6 @@ function Entete(props)
             <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
           : '' }
         </div>
-
       </nav>
 
       {!context.estLog?

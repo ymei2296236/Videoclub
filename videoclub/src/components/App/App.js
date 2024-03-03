@@ -10,30 +10,36 @@ import './App.css';
 
 export const AppContext =  React.createContext();
 
-function App() {
-
-  // const [estLog, setEstLog] = useState(false);
-  const [logging, setLogging] = useState({ estLog:false, usager:'' });
+function App() 
+{
+  const [logging, setLogging] = useState(JSON.parse(localStorage.logging));
+  // const [logging, setLogging] = useState({ estLog:false, usager:'' });
 
   function login(e)
   {
     e.preventDefault();
-    // console.log(e.target.usager);
+
+    let aLogging = {};
 
     if(e.target.usager.value === 'admin') 
     {
-      // console.log(e.target.usager.value);
       // estLog(prevEstLog => !prevEstLog);
       // setLogging({estLog:true, usager: e.target.usager.value});
-      setLogging(logging => ({...logging, estLog: true, usager: e.target.usager.value}));
+      // setLogging(logging => ({...logging, estLog: true, usager: e.target.usager.value}));
+    
+      aLogging['estLog'] = e.target.usager.value;
+      localStorage.setItem("logging", JSON.stringify(aLogging));
+      
       e.target.reset(); // si c'est la bonne valeur, réinitialiser le champs
+      setLogging(localStorage.logging);
+
     }
   }
 
   
-
   return (
     // Tous les components dans AppContext auront accèss au logging
+    // <AppContext.Provider value={logging}>
     <AppContext.Provider value={logging}>
       <Router>
       {/* <Entete handleLogin={login} estLog={estLog}/> */}
@@ -42,7 +48,7 @@ function App() {
           <Route path="/" element={<Accueil />} />
           <Route path="/liste-films" element={<ListeFilms />} />
           <Route path="/film/:id" element={<Film />} />
-          <Route path="/admin" element={logging.estLog? <Admin/> : <Navigate to="/"/>} />
+          <Route path="/admin" element={logging? <Admin/> : <Navigate to="/"/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

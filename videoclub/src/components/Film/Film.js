@@ -6,7 +6,7 @@ import { AppContext} from '../App/App';
 import Commentaire from '../Commentaire/Commentaire';
 
 
-function Film(props) 
+function Film() 
 {
   const context = useContext(AppContext);
 
