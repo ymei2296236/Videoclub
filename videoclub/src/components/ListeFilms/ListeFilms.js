@@ -4,11 +4,11 @@ import './ListeFilms.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-function ListeFilms() 
+
+
+function ListeFilms(props) 
 {
-  // const urlListeFilms = 'data/titre-asc.json';
-  // const urlListeFilms = 'https://cadriel-front.onrender.com/films';
-  // const urlListeFilms = 'https://four1f-node-api.onrender.com/films'; // serveur de Simon
+  // console.log(props);
 
   // useState fait un rendu dès que l'état changé 
   const [listeFilms, setListeFilms] = useState([]);
@@ -48,6 +48,7 @@ function ListeFilms()
     SetFiltre(() => nouveauFiltre)
   }
 
+
   /**
    * Création des tuilesFilm
    */
@@ -68,7 +69,7 @@ function ListeFilms()
       <div className="liste" >
         {tuilesFilm}
       </div>
-      
+
     </main>
   );
 }

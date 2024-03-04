@@ -49,11 +49,11 @@ function Filtre(props)
     function gereActive(e)
     {
         let filtre = e.target.dataset.jsFiltre,
-            urlsActive = document.querySelectorAll('[data-js-filtre]');
+            urlsFiltres = document.querySelectorAll('[data-js-filtre]');
 
-        for (let i = 0, l = urlsActive.length; i < l; i++) 
+        for (let i = 0, l = urlsFiltres.length; i < l; i++) 
         {
-            if(urlsActive[i].dataset.jsFiltre !== filtre) urlsActive[i].classList.remove('active');
+            if(urlsFiltres[i].dataset.jsFiltre !== filtre) urlsFiltres[i].classList.remove('active');
         }
 
         e.target.classList.add('active');

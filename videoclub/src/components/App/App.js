@@ -8,11 +8,16 @@ import React, { useState } from 'react';
 import Admin from '../Admin/Admin';
 import './App.css';
 
+import useScreenSize from '../useScreenSize';
 
 export const AppContext =  React.createContext();
 
 function App() 
 {
+  const screenSize = useScreenSize();
+  const widthScreen = screenSize.width;
+
+  // console.log(widthScreen);
   const [logging, setLogging] = useState(JSON.parse(localStorage.logging));
   // const [logging, setLogging] = useState({ estLog:false, usager:'' });
 
@@ -47,7 +52,7 @@ function App()
       <Entete handleLogin={login}/>
         <Routes>
           <Route path="/" element={<Accueil />} />
-          <Route path="/liste-films" element={<ListeFilms />} />
+          <Route path="/liste-films" element={<ListeFilms widthScreen={widthScreen}/>} />
           <Route path="/film/:id" element={<Film />} />
           <Route path="/admin" element={logging? <Admin/> : <Navigate to="/"/>} />
           <Route path="*" element={<NotFound />} />

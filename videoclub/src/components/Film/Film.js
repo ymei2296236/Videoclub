@@ -5,14 +5,10 @@ import Vote from '../Vote/Vote';
 import { AppContext} from '../App/App';
 import Commentaire from '../Commentaire/Commentaire';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 
 function Film() 
 {
-  const elStar = <FontAwesomeIcon icon={faStar} size="lg" style={{color: "#ffc259",}} />;
-
-// ReactDOM.render(elStar, document.body)
-
   const context = useContext(AppContext);
 
   // Afficher les infos du film par son id au chargement de la page
@@ -36,7 +32,8 @@ function Film()
   // Tracer le changement d'état des stats des votes
   const [moyenne, setMoyenne] = useState(0);
   const [nbVotes, setNbVotes] = useState(0);
-  // const [domCommentaires, setDomCommentaires] = useState();
+
+  const [vote, setVote] = useState();
   
   // Créer le dom des genres
   const genres = film.genres?.map((genre, index)=>{
@@ -68,6 +65,10 @@ function Film()
     }
   }
 
+  function handleVote(e)
+  {
+    setVote(parseInt(e.target.value));
+  }
 
   async function appelAsync(data)
   {
@@ -95,7 +96,6 @@ function Film()
         })      
     }
 
-  
   return (
     <main className="film">
         <div className="film__img">
@@ -104,19 +104,22 @@ function Film()
 
         <div className="film__infos">
           <h1>{film.titre} <span className='annee'>({film.annee})</span></h1>
-          <p className='vote'>
-            {elStar} <span className='bold'>{moyenne}</span> <span> | {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' } </span>
+          <div className='vote'>
+            <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
+            <span className='bold'>{moyenne}</span> 
+            | {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' } 
             <div>
               <button className="btn btn-secondary">Voter</button>
               <button className="btn btn-secondary">Commenter</button>
             </div>
-          </p>
+          </div>
+          
           <p><span className='bold'>Réalisateur : </span>{film.realisation}</p>
           <p>{film.description}</p>
           <p className='genres'>{genres}</p>
 
 
-          <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync}/>
+          <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync} vote={vote} handleVote={handleVote}/>
 
           {context.estLog? 
             <Commentaire commentaires={film.commentaires} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync}/>
