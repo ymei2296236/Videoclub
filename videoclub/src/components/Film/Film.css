@@ -7,7 +7,7 @@
 
 		& .film__img {
 			aspect-ratio: 3/ 3;
-			/* max-width: max(var(--width-mobile), 50vw); */
+			max-width: max(var(--width-mobile), 50vw);
 
 			img {
 				width: 100%;
