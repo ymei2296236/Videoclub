@@ -60,13 +60,13 @@ function ListeFilms(props)
   })
   
   return (
-    <main>
+    <main className='catalogue'>
       <div>
-        <p className='tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p>
+        <p className='catalogue__tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p>
         <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre}/>
       </div>
 
-      <div className="liste" >
+      <div className="catalogue__liste" >
         {tuilesFilm}
       </div>
 
