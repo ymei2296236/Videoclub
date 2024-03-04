@@ -15,10 +15,10 @@ function Commentaire(props)
         // console.log(e.target.commentaire.value);
 
         let inputCommentaire =e.target.commentaire.value;
-        e.target.reset();
 
+        e.target.reset();
         // Si c'est la première note
-        if(inputCommentaire !== undefined)
+        if(inputCommentaire !== undefined && inputCommentaire !== '')
         {
             if(!props.commentaires)
             {
@@ -38,7 +38,7 @@ function Commentaire(props)
         <form className='commentaire' onSubmit={soumettreCommentaire}>
             <div className='commentaire__titre'>Commenter</div>
 
-            <textarea name="commentaire" placeholder='Ajouter votre commentaire'></textarea>
+            <textarea className='commentaire__textarea' name="commentaire" placeholder='Ajouter votre commentaire' cols="3" rows="8"></textarea>
             <div className='commentaire__btns'> 
                 <button className="btn btn-secondary">Annuler</button>
                 <button className="btn btn-secondary">Soumettre</button>

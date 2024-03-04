@@ -20,13 +20,13 @@ function Entete(props)
         <div className='entete__menu'>
           <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
           {/* {props.logging.estLog? <NavLink to="/admin"><h2>Admin</h2></NavLink>: '' } */}
-          {context.estLog?
+          {context.usager?
             <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
           : '' }
         </div>
       </nav>
 
-      {!context.estLog?
+      {!context.usager?
         <form className='entete__form' onSubmit={props.handleLogin}>
           <input type="text" name="usager" placeholder="nom de l'usager"></input>
           <button className="btn btn-secondary">Login</button>

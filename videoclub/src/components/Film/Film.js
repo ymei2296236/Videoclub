@@ -121,7 +121,7 @@ function Film()
 
           <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync} vote={vote} handleVote={handleVote}/>
 
-          {context.estLog? 
+          {context.usager? 
             <Commentaire commentaires={film.commentaires} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync}/>
           : ''}
           {domCommentaires}

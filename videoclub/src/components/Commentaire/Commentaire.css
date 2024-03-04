@@ -14,6 +14,9 @@
 		padding: var(--espace-3quarts);
 	}
 
+	.commentaire__textarea {
+		padding: var(--espace-half);
+	}
 	.commentaire__btns {
 		border-top: 0.5px solid var(--coul-texte);
 		display: flex;

@@ -18,8 +18,12 @@ function App()
   const widthScreen = screenSize.width;
 
   // console.log(widthScreen);
-  const [logging, setLogging] = useState(JSON.parse(localStorage.logging));
-  // const [logging, setLogging] = useState({ estLog:false, usager:'' });
+  let loggingInitial;
+
+  if(localStorage.logging) loggingInitial = JSON.parse(localStorage.logging);
+  else loggingInitial = { usager:'' };
+  
+  const [logging, setLogging] = useState(loggingInitial);
 
   function login(e)
   {
@@ -33,7 +37,7 @@ function App()
       // setLogging({estLog:true, usager: e.target.usager.value});
       // setLogging(logging => ({...logging, estLog: true, usager: e.target.usager.value}));
     
-      aLogging['estLog'] = e.target.usager.value;
+      aLogging['usager'] = e.target.usager.value;
       localStorage.setItem("logging", JSON.stringify(aLogging));
       
       e.target.reset(); // si c'est la bonne valeur, réinitialiser le champs
