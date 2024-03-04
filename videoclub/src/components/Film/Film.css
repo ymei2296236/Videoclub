@@ -39,5 +39,15 @@
 				margin-right: var(--espace-half);
 			}
 		}
+
+		.film__commentaires {
+			border-top: 2px solid var(--coul-primary);
+			background-color: var(--coul-tertiary);
+			padding: var(--espace-1half) var(--espace-1);
+			margin-top: var(--espace-2);
+			display: flex;
+			flex-direction: column;
+			gap: var(--espace-1);
+		}
 	}
 }

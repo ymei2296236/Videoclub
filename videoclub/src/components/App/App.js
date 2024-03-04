@@ -49,10 +49,8 @@ function App()
   
   return (
     // Tous les components dans AppContext auront accèss au logging
-    // <AppContext.Provider value={logging}>
     <AppContext.Provider value={logging}>
       <Router>
-      {/* <Entete handleLogin={login} estLog={estLog}/> */}
       <Entete handleLogin={login}/>
         <Routes>
           <Route path="/" element={<Accueil />} />

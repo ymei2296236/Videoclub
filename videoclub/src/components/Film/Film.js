@@ -41,7 +41,7 @@ function Film()
   })
 
   const domCommentaires = film.commentaires?.map((commentaire, index)=>{
-    return <p key={index}> <span>{commentaire.commentaire} </span> <span>{commentaire.usager} </span></p>
+    return <p key={index}><span className='bold'>{commentaire.usager} </span> : <span>{commentaire.commentaire} </span> </p>
   });
 
   // Mettre à jour le film
@@ -96,6 +96,7 @@ function Film()
         })      
     }
 
+
   return (
     <main className="film">
         <div className="film__img">
@@ -124,7 +125,11 @@ function Film()
           {context.usager? 
             <Commentaire commentaires={film.commentaires} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync}/>
           : ''}
-          {domCommentaires}
+
+          <div className='film__commentaires'>
+            {film.commentaires? <h2>Commentaires</h2> : ''}
+            {film.commentaires? domCommentaires : ''}
+          </div>
 
         </div>
   </main>
