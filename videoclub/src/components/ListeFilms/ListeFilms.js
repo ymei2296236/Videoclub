@@ -1,27 +1,75 @@
 import TuileFilm from '../TuileFilm/TuileFilm';
-import { NavLink } from 'react-router-dom';
+import Filtre from '../Filtre/Filtre';
 import './ListeFilms.css';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-function ListeFilms() {
 
-  const listeFilms = [
-    { titre:'Film 1', realisateur: 'Billy', annee:'2024' },
-    { titre:'Film 2', realisateur: 'Willy', annee:'2000' },
-    { titre:'Film 3', realisateur: 'Milly', annee:'1999' }
-  ];
 
-  const tuilesFilm = listeFilms.map((film, index)=>{
-    return <NavLink key={index} to="#"><TuileFilm key={index} data={film} /></NavLink>
+function ListeFilms(props) 
+{
+  // console.log(props);
 
-    // return <TuileFilm key={index} data={film} />
+  // useState fait un rendu dès que l'état changé 
+  const [listeFilms, setListeFilms] = useState([]);
+
+  // const [urlListeFilms, setUrlListeFilms] = useState('data/titre-asc.json');
+  const [urlListeFilms, setUrlListeFilms] = useState('https://cadriel-front.onrender.com/films');
+
+  const [filtre, SetFiltre] = useState();
+  /**
+   * Fait un appel à la base de données suite au changement de listFilms
+   */ 
+  useEffect(()=>
+  {
+    fetch(urlListeFilms)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setListeFilms(data);
+      } )
+  // [] executer seulement dans la première rendu
+  // [urlListeFilms] executer chaque fois 'urlListeFilms' se change
+  }, [urlListeFilms]);
+
+
+  
+  /**
+   * Gère l'url de l'API
+   * @param {String} nouveauUrl 
+  */
+  function handleUrl(nouveauUrl)
+  {
+   setUrlListeFilms(() => nouveauUrl)
+  }
+
+  function handleFiltre(nouveauFiltre)
+  {
+    SetFiltre(() => nouveauFiltre)
+  }
+
+
+  /**
+   * Création des tuilesFilm
+   */
+  const tuilesFilm = listeFilms.map((film, index)=>
+  {
+    return  <Link key={index} data={film} to={`/film/${film.id}`}  className="liste__tuile">
+              <TuileFilm key={index} data={film} urlListeFilms={urlListeFilms}/>
+            </Link>
   })
-
+  
   return (
-    <main>
-      <h2>Liste des films</h2>
+    <main className='catalogue'>
       <div>
+        <p className='catalogue__tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p>
+        <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre}/>
+      </div>
+
+      <div className="catalogue__liste" >
         {tuilesFilm}
       </div>
+
     </main>
   );
 }

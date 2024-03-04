@@ -1,0 +1,38 @@
+.votes {
+	display: flex;
+	flex-direction: column;
+	/* align-items: center; */
+	gap: var(--espace-1);
+
+	.votes__titre {
+		background-color: var(--coul-texte);
+		color: var(--coul-tertiary);
+		font-family: var(--police-titre);
+		font-size: var(--text-sm);
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		text-align: center;
+		padding: var(--espace-3quarts);
+	}
+
+	.votes__item input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+
+	.votes__stars {
+		display: flex;
+		gap: var(--espace-2);
+		justify-content: space-around;
+		padding: 0 var(--espace-2);
+	}
+
+	.votes__btns {
+		border-top: 0.5px solid var(--coul-texte);
+		display: flex;
+		justify-content: center;
+	}
+}

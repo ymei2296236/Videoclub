@@ -24,6 +24,7 @@ function App() {
   {
     return <Compteur key={index} valeurInitiale={valeurInitiale} handleTotal={handleTotal} />
   })
+
  
   return (
     <>

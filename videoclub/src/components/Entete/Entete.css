@@ -1,0 +1,22 @@
+.entete__container {
+	display: flex;
+	flex-wrap: wrap;
+	background-color: var(--coul-primary);
+	padding: var(--espace-1);
+
+	.entete__nav {
+		display: flex;
+		align-items: center;
+		margin-right: var(--espace-2);
+
+		.entete__menu {
+			display: flex;
+			margin-left: var(--espace-2);
+			gap: var(--espace-half);
+		}
+	}
+	.entete__form {
+		display: flex;
+		gap: var(--espace-1);
+	}
+}

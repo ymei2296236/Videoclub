@@ -1,0 +1,49 @@
+@font-face {
+	font-family: "Lilita One";
+	src: url("../../fonts/Lilita_One/LilitaOne-Regular.ttf");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Be Vietnam Pro";
+	src: url("../../fonts/Be_Vietnam_Pro/BeVietnamPro-Regular.ttf");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Be Vietnam Pro";
+	src: url("../../fonts/Be_Vietnam_Pro/BeVietnamPro-SemiBold.ttf");
+	font-weight: 600;
+	font-style: bold;
+}
+
+h1 {
+	font-family: var(--police-titre);
+	font-size: var(--text-md);
+	color: var(--coul-texte);
+}
+
+h2 {
+	font-family: var(--police-titre);
+	font-size: var(--text-sm);
+	color: var(--coul-texte);
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+p {
+	font-family: var(--police-texte);
+	font-size: var(--text-sm);
+	font-weight: normal;
+	color: var(--coul-texte);
+	line-height: 1.4;
+}
+
+.bold {
+	font-family: var(--police-texte);
+	font-size: var(--text-sm);
+	font-weight: bold;
+	color: var(--coul-texte);
+}

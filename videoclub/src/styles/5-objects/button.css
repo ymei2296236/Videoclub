@@ -1,0 +1,24 @@
+.btn {
+	font-family: var(--police-titre);
+	font-size: var(--text-sm);
+	color: var(--coul-texte);
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	border: 0px;
+}
+
+.btn-primary {
+	padding: var(--espace-3quarts);
+	background-color: var(--coul-primary);
+}
+
+.btn-secondary {
+	padding: var(--espace-3quarts);
+	background-color: var(--coul-secondary);
+}
+
+.btn-dark {
+	padding: var(--espace-3quarts);
+	background-color: var(--coul-texte);
+	color: var(--coul-primary);
+}
