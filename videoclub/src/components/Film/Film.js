@@ -99,39 +99,48 @@ function Film()
 
   return (
     <main className="film">
-        <div className="film__img">
-          <img src={`../img/${film.titreVignette}`} alt={film.titre}/>
+        {/* <div className='film__container' style={{backgroundImage:"url(" + `../img/${film.titreVignette}` + ")", opacity: 0.2}}> */}
+        <div className='film__container'>
+
+          <div className="film__img">
+            <img src={`../img/${film.titreVignette}`} alt={film.titre}/>
+          </div>
+
+          <div className="film__infos">
+            <h1>{film.titre} <span className='annee'>({film.annee})</span></h1>
+
+            <div className='vote'>
+              <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
+              <span className='bold'>{moyenne}</span> 
+              | {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' } 
+              {/* <div>
+                <button className="btn btn-secondary">Voter</button>
+                <button className="btn btn-secondary">Commenter</button>
+              </div> */}
+            </div>
+          
+            <p><span className='bold'>Réalisateur : </span>{film.realisation}</p>
+            <p>{film.description}</p>
+            <p className='genres'>{genres}</p>
+
+        <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync} vote={vote} handleVote={handleVote}/>
+          </div>
+
         </div>
 
-        <div className="film__infos">
-          <h1>{film.titre} <span className='annee'>({film.annee})</span></h1>
-          <div className='vote'>
-            <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
-            <span className='bold'>{moyenne}</span> 
-            | {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' } 
-            <div>
-              <button className="btn btn-secondary">Voter</button>
-              <button className="btn btn-secondary">Commenter</button>
-            </div>
-          </div>
-          
-          <p><span className='bold'>Réalisateur : </span>{film.realisation}</p>
-          <p>{film.description}</p>
-          <p className='genres'>{genres}</p>
-
-
-          <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync} vote={vote} handleVote={handleVote}/>
+        
+        <div className='film__commentaires'>
 
           {context.usager? 
             <Commentaire commentaires={film.commentaires} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync}/>
           : ''}
 
-          <div className='film__commentaires'>
+          <div className='film__commentaire-list'>
             {film.commentaires? <h2>Commentaires</h2> : ''}
             {film.commentaires? domCommentaires : ''}
           </div>
-
         </div>
+
   </main>
   );
 }

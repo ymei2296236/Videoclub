@@ -48,21 +48,20 @@ function Vote(props)
       
     const domNotes = notes.map((note, index)=>{
 
-        return <label className='votes__item' key={ index }><input type="radio" name="vote" value={ note } onClick={(e) => {voter(e)}} data-js-vote/> {props.vote === note? elStarActive : elStar}</label>
+        return <label className='votes__item' key={ index }> {note}<input type="radio" name="vote" value={ note } onClick={(e) => {voter(e)}} data-js-vote/> {props.vote === note? elStarActive : elStar}</label>
 
     })
 
     return (
         <div className='votes'>
-            <div className='votes__titre'>Voter</div>
+            {/* <div className='votes__titre'>Voter</div> */}
             <div className='votes__stars'>
             { domNotes }
 
 
             </div>
             <div className='votes__btns'> 
-                <button onClick={ soumettreNote } className="btn btn-secondary">Annuler</button>
-                <button onClick={ soumettreNote } className="btn btn-secondary">Soumettre</button>
+                <button onClick={ soumettreNote } className="btn btn-secondary">Voter</button>
             </div>
         </div>
   );

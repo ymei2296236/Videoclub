@@ -35,14 +35,11 @@ function Commentaire(props)
     }
 
     return (
-        <form className='commentaire' onSubmit={soumettreCommentaire}>
-            <div className='commentaire__titre'>Commenter</div>
+        <form className='commenter' onSubmit={soumettreCommentaire}>
+            {/* <div className='commentaire__titre'>Commenter</div> */}
 
-            <textarea className='commentaire__textarea' name="commentaire" placeholder='Ajouter votre commentaire' cols="3" rows="8"></textarea>
-            <div className='commentaire__btns'> 
-                <button className="btn btn-secondary">Annuler</button>
-                <button className="btn btn-secondary">Soumettre</button>
-            </div>
+            <textarea className='commenter__textarea' name="commentaire" placeholder='Ajouter votre commentaire' rows="8"></textarea>
+            <button className="btn btn-dark">Commenter</button>
         </form>
     );
 }

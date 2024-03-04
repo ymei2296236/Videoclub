@@ -19,6 +19,6 @@
 
 .btn-dark {
 	padding: var(--espace-3quarts);
-	background-color: var(--coul-text);
-	color: var(--coul-tertiary);
+	background-color: var(--coul-texte);
+	color: var(--coul-primary);
 }

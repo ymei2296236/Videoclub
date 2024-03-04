@@ -1,9 +1,15 @@
-.commentaire {
+.commenter {
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
+	flex-wrap: wrap;
 	gap: var(--espace-1);
+	flex: 1;
+	margin-top: var(--espace-2);
+	padding: 0 var(--espace-2);
+	align-items: start;
+	/* max-width: max(var(--width-mobile), 50vw); */
 
-	.commentaire__titre {
+	/* .commentaire__titre {
 		background-color: var(--coul-texte);
 		color: var(--coul-tertiary);
 		font-family: var(--police-titre);
@@ -12,14 +18,10 @@
 		text-transform: uppercase;
 		text-align: center;
 		padding: var(--espace-3quarts);
-	}
+	} */
 
-	.commentaire__textarea {
+	.commenter__textarea {
 		padding: var(--espace-half);
-	}
-	.commentaire__btns {
-		border-top: 0.5px solid var(--coul-texte);
-		display: flex;
-		justify-content: center;
+		width: 100%;
 	}
 }
