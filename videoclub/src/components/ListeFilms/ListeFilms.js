@@ -16,6 +16,7 @@ function ListeFilms()
   // const [urlListeFilms, setUrlListeFilms] = useState('data/titre-asc.json');
   const [urlListeFilms, setUrlListeFilms] = useState('https://cadriel-front.onrender.com/films');
 
+  const [filtre, SetFiltre] = useState();
   /**
    * Fait un appel à la base de données suite au changement de listFilms
    */ 
@@ -42,6 +43,11 @@ function ListeFilms()
    setUrlListeFilms(() => nouveauUrl)
   }
 
+  function handleFiltre(nouveauFiltre)
+  {
+    SetFiltre(() => nouveauFiltre)
+  }
+
   /**
    * Création des tuilesFilm
    */
@@ -55,8 +61,8 @@ function ListeFilms()
   return (
     <main>
       <div>
-        <p className='tri'><span className='btn btn-dark'>Trier par</span> <span>Année de production</span></p>
-        <Filtre handleUrl={handleUrl}/>
+        <p className='tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p>
+        <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre}/>
       </div>
 
       <div className="liste" >

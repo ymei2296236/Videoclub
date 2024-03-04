@@ -1,0 +1,22 @@
+.commentaire {
+	display: flex;
+	flex-direction: column;
+	gap: var(--espace-1);
+
+	.commentaire__titre {
+		background-color: var(--coul-texte);
+		color: var(--coul-tertiary);
+		font-family: var(--police-titre);
+		font-size: var(--text-sm);
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		text-align: center;
+		padding: var(--espace-3quarts);
+	}
+
+	.commentaire__btns {
+		border-top: 0.5px solid var(--coul-texte);
+		display: flex;
+		justify-content: center;
+	}
+}

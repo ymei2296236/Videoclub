@@ -1,9 +1,16 @@
 import './Vote.css';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarOutlined } from '@fortawesome/free-regular-svg-icons';
 
 
 function Vote(props) 
 {
+
+    const elStar = <FontAwesomeIcon icon={faStarOutlined} size="lg" style={{color: "#ffc259"}} />;
+
+
     // Tracer le changement d'état de vote
     const [vote, setVote] = useState();
 
@@ -40,14 +47,20 @@ function Vote(props)
     const notes = [1, 2, 3, 4, 5];
       
     const domNotes = notes.map((note, index)=>{
-        return <label key={ index }><input type="radio" name="vote" value={ note } onClick={ voter } /> { note }</label>
+        return <label className='votes__item' key={ index }><input type="radio" name="vote" value={ note } onClick={ voter } /> { elStar }</label>
     })
 
     return (
-        <div>
+        <div className='votes'>
+            <div className='votes__titre'>Voter</div>
+            <div className='votes__stars'>
             { domNotes }
-            <button onClick={ soumettreNote }>Voter</button>
-      </div>
+            </div>
+            <div className='votes__btns'> 
+                <button onClick={ soumettreNote } className="btn btn-secondary">Annuler</button>
+                <button onClick={ soumettreNote } className="btn btn-secondary">Soumettre</button>
+            </div>
+        </div>
   );
 }
 
