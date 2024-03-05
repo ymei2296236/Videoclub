@@ -25,11 +25,11 @@ function Filtre(props)
                 break;
                 case 'realisation-asc' : 
                 props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation');
-                props.handleFiltre('Nom du réalisateur(A-Z)');
+                props.handleFiltre('Nom du réalisateur (A-Z)');
                 break;
             case 'realisation-desc' : 
                 props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc');
-                props.handleFiltre('Nom du réalisateur(Z-A))');
+                props.handleFiltre('Nom du réalisateur (Z-A)');
                 break;
             case 'annee-desc' : 
                 props.handleUrl('https://cadriel-front.onrender.com/films?tri=annee&ordre=desc');
