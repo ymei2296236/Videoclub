@@ -27,7 +27,7 @@ function App()
 
   function login(e)
   {
-    e.preventDefault();
+    // e.preventDefault();
 
     let aLogging = {};
 

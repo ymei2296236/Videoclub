@@ -41,6 +41,7 @@
 				padding: var(--espace-3quarts) 0;
 
 				.genre {
+					display: inline-block;
 					border: 1px solid var(--coul-texte);
 					border-radius: 40px;
 					padding: var(--espace-quart) var(--espace-half);
@@ -53,15 +54,18 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		margin-top: var(--espace-2);
+		padding: var(--espace-1);
 		border-top: 2px solid var(--coul-primary);
+		gap: var(--espace-3);
+		align-items: flex-start;
 
 		.film__commentaire-list {
-			padding: var(--espace-1half) var(--espace-1);
+			padding: var(--espace-1half) 0;
 			display: flex;
 			flex-direction: column;
 			gap: var(--espace-1);
-			flex: 1;
+			flex: 40%;
+			/* margin-left: var(--espace-1); */
 		}
 	}
 }

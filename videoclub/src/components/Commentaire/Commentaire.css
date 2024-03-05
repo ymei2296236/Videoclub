@@ -3,11 +3,11 @@
 	/* flex-direction: column; */
 	flex-wrap: wrap;
 	gap: var(--espace-1);
-	flex: 1;
+	min-width: 48vw;
 	margin-top: var(--espace-2);
-	padding: 0 var(--espace-2);
-	align-items: start;
-	/* max-width: max(var(--width-mobile), 50vw); */
+	/* padding: 0 0 0 var(--espace-1); */
+	align-items: flex-start;
+	/* min-width: var(--width-mobile); */
 
 	/* .commentaire__titre {
 		background-color: var(--coul-texte);

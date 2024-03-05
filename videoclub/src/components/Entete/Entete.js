@@ -28,7 +28,7 @@ function Entete(props)
 
       {!context.usager?
         <form className='entete__form' onSubmit={props.handleLogin}>
-          <input type="text" name="usager" placeholder="nom de l'usager"></input>
+          <input type="text" name="usager" placeholder="Nom de l'usager"></input>
           <button className="btn btn-secondary">Login</button>
         </form>
       : ''}

@@ -1,7 +1,7 @@
 .votes {
 	display: flex;
-	flex-direction: column;
-	/* align-items: center; */
+	flex-wrap: wrap;
+	margin-top: var(--espace-1);
 	gap: var(--espace-1);
 
 	.votes__titre {
@@ -26,13 +26,6 @@
 	.votes__stars {
 		display: flex;
 		gap: var(--espace-2);
-		justify-content: space-around;
-		padding: 0 var(--espace-2);
-	}
-
-	.votes__btns {
-		border-top: 0.5px solid var(--coul-texte);
-		display: flex;
-		justify-content: center;
+		align-items: center;
 	}
 }

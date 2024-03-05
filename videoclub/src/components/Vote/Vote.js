@@ -57,11 +57,9 @@ function Vote(props)
             {/* <div className='votes__titre'>Voter</div> */}
             <div className='votes__stars'>
             { domNotes }
-
-
             </div>
-            <div className='votes__btns'> 
-                <button onClick={ soumettreNote } className="btn btn-secondary">Voter</button>
+            <div>
+                <button  onClick={ soumettreNote } className="btn btn-dark">Voter</button>
             </div>
         </div>
   );

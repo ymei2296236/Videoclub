@@ -113,17 +113,13 @@ function Film()
               <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
               <span className='bold'>{moyenne}</span> 
               | {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' } 
-              {/* <div>
-                <button className="btn btn-secondary">Voter</button>
-                <button className="btn btn-secondary">Commenter</button>
-              </div> */}
             </div>
           
             <p><span className='bold'>Réalisateur : </span>{film.realisation}</p>
             <p>{film.description}</p>
             <p className='genres'>{genres}</p>
 
-        <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync} vote={vote} handleVote={handleVote}/>
+            <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync} vote={vote} handleVote={handleVote}/>
           </div>
 
         </div>
