@@ -1,5 +1,5 @@
 import './Accueil.css';
-import accueil from './accueil.json';
+import accueil from './Accueil.json';
 
 function Accueil() {
 

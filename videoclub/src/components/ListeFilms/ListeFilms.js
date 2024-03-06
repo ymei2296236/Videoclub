@@ -62,8 +62,8 @@ function ListeFilms(props)
   return (
     <main className='catalogue'>
       <div>
-        <p className='catalogue__tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p>
-        <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre}/>
+        {/* <p className='catalogue__tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p> */}
+        <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre} filtre={filtre}/>
       </div>
 
       <div className="catalogue__liste" >

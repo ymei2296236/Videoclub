@@ -24,7 +24,7 @@ function Filtre(props)
                 
                 break;
                 case 'realisation-asc' : 
-                props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation');
+                // props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation');
                 props.handleFiltre('Nom du réalisateur (A-Z)');
                 break;
             case 'realisation-desc' : 
@@ -40,7 +40,7 @@ function Filtre(props)
                 props.handleFiltre('Années (moins récent)');
 
         }
-    }
+    } 
 
     /**
      * Gère le style du filtre actif
@@ -60,37 +60,36 @@ function Filtre(props)
     }
 
     return (
-        <ul className="filtre">
-            <label className="filtre-item" data-js-filtre="annee-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                Années de production (moins récent)
-                    <input type="radio" name="filtre"/> 
-            </label>
-            <label className="filtre-item" data-js-filtre="annee-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                Années de production (plus récent)
-                    <input type="radio" name="filtre"/>
-               
-            </label>
-            <label className="filtre-item" data-js-filtre="titre-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                Nom du film (A-Z)
-                    <input type="radio" name="filtre"/>
-                
-            </label>
-            <label className="filtre-item" data-js-filtre="titre-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                Nom du film (Z-A)
-                    <input type="radio" name="filtre"/>
-                
-            </label>
-            <label className="filtre-item" data-js-filtre="realisation-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                Nom du réalisateur(A-Z)
-                    <input type="radio" name="filtre"/>
-                
-            </label>
-            <label className="filtre-item" data-js-filtre="realisation-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                Nom du réalisateur(Z-A)
-                    <input type="radio" name="filtre"/>
-                
-            </label>
-        </ul>
+        <div>
+            <p data-testid="filtreActif">Nom du réalisateur(A-Z)</p>
+
+            <ul className="filtre">
+                <label className="filtre-item" data-js-filtre="annee-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
+                    Années de production (moins récent)
+                        <input type="radio" name="filtre"/> 
+                </label>
+                <label className="filtre-item" data-js-filtre="annee-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
+                    Années de production (plus récent)
+                        <input type="radio" name="filtre"/>   
+                </label>
+                <label className="filtre-item" data-js-filtre="titre-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
+                    Nom du film (A-Z)
+                        <input type="radio" name="filtre"/> 
+                </label>
+                <label className="filtre-item" data-js-filtre="titre-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
+                    Nom du film (Z-A)
+                        <input type="radio" name="filtre"/>  
+                </label>
+                <label className="filtre-item" data-js-filtre="realisation-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
+                    Nom du réalisateur(A-Z)
+                        <input type="radio" name="filtre"/>  
+                </label>
+                <label className="filtre-item" data-js-filtre="realisation-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
+                    Nom du réalisateur(Z-A)
+                        <input type="radio" name="filtre"/>
+                </label>
+            </ul>
+        </div>
     );
 }
 

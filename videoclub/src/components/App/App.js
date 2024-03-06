@@ -21,6 +21,7 @@ function App()
   let loggingInitial;
 
   if(localStorage.logging) loggingInitial = JSON.parse(localStorage.logging);
+  
   else loggingInitial = { usager:'' };
   
   const [logging, setLogging] = useState(loggingInitial);
