@@ -25,8 +25,6 @@ function ListeFilms(props)
     exit:{ opacity: 0, y:25, transition },
   }
 
-
-
   /**
    * Fait un appel à la base de données suite au changement de listFilms
    */ 
@@ -69,6 +67,7 @@ function ListeFilms(props)
               <TuileFilm key={index} data={film} urlListeFilms={urlListeFilms}/>
             </Link>
   })
+
   
   return (
     <main className='catalogue'>
@@ -80,7 +79,7 @@ function ListeFilms(props)
           animate= {{ opacity: 1, x:0, transition }}
           exit={{ opacity: 0, x:-25, transition }}
         >
-          <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre} filtre={filtre}/>
+          <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre} filtre={filtre} />
         </motion.div>
       </div>
 

@@ -1,7 +1,6 @@
 {
   "name": "videoclub",
   "version": "0.1.0",
-  "homepage": "/videoclub",
   "private": true,
   "dependencies": {
     "@awesome.me/kit-": "file:fortawesome/free-regular-svg-icons@latest",

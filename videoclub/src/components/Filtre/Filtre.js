@@ -56,15 +56,13 @@ function Filtre(props)
         {
             if(urlsFiltres[i].dataset.jsFiltre !== filtre) urlsFiltres[i].classList.remove('active');
         }
-
         e.target.classList.add('active');
     }
 
     return (
         <div>
             {/* <p data-testid="filtreActif">Nom du réalisateur(A-Z)</p> */}
-            <p className='catalogue__tri' data-testid="filtreActif"><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p>
-
+            <p className='catalogue__tri' data-testid="filtreActif"><span className='btn btn-dark'>Trier par</span> <span>{props.filtre}</span></p>
 
             <ul className="filtre">
                 <label className="filtre-item" data-js-filtre="annee-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>

@@ -103,7 +103,7 @@ function Film()
         <div className='film__container'>
 
           <div className="film__img">
-            <img src={`../img/${film.titreVignette}`} alt={film.titre}/>
+            <img src={`/img/${film.titreVignette}`} alt={film.titre}/>
           </div>
 
           <div className="film__infos">
@@ -123,7 +123,6 @@ function Film()
           </div>
 
         </div>
-
         
         <div className='film__commentaires'>
 
