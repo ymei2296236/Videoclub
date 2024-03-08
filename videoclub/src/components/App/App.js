@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
 import Accueil from '../Accueil/Accueil';
 import ListeFilms from '../ListeFilms/ListeFilms';
 import Entete from '../Entete/Entete';
 import Film from '../Film/Film';
 import NotFound from '../NotFound/NotFound';
-import React, { useState } from 'react';
 import Admin from '../Admin/Admin';
 import './App.css';
 
@@ -14,6 +15,7 @@ export const AppContext =  React.createContext();
 
 function App() 
 {
+  const location = useLocation();
   const screenSize = useScreenSize();
   const widthScreen = screenSize.width;
 
@@ -51,16 +53,20 @@ function App()
   return (
     // Tous les components dans AppContext auront accèss au logging
     <AppContext.Provider value={logging}>
-      <Router>
+      {/* <Router> */}
       <Entete handleLogin={login}/>
-        <Routes>
+
+      <AnimatePresence mode='wait'>
+        <Routes location={location} key={location.key}>
           <Route path="/" element={<Accueil />} />
           <Route path="/liste-films" element={<ListeFilms widthScreen={widthScreen}/>} />
           <Route path="/film/:id" element={<Film />} />
           <Route path="/admin" element={logging? <Admin/> : <Navigate to="/"/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Router>
+      </AnimatePresence>
+
+      {/* </Router> */}
     </AppContext.Provider>
   );
 }

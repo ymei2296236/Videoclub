@@ -1,3 +1,4 @@
+
 import './Filtre.css';
 
 
@@ -24,7 +25,7 @@ function Filtre(props)
                 
                 break;
                 case 'realisation-asc' : 
-                // props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation');
+                props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation');
                 props.handleFiltre('Nom du réalisateur (A-Z)');
                 break;
             case 'realisation-desc' : 
@@ -61,7 +62,9 @@ function Filtre(props)
 
     return (
         <div>
-            <p data-testid="filtreActif">Nom du réalisateur(A-Z)</p>
+            {/* <p data-testid="filtreActif">Nom du réalisateur(A-Z)</p> */}
+            <p className='catalogue__tri' data-testid="filtreActif"><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p>
+
 
             <ul className="filtre">
                 <label className="filtre-item" data-js-filtre="annee-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
