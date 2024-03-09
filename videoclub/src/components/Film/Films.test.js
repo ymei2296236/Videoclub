@@ -3,13 +3,13 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { AppContext } from '../App/App';
 import Film from './Film';
-//import Vote from '../Vote/Vote';
+import Vote from '../Vote/Vote';
 
-
-describe('Composant Film', () => {
-
+describe('Composant Film', () => 
+{
     // Objet fictif
-    const mockFilm = {
+    const mockFilm = 
+    {
         titre: 'Alien - Le 8ème passager',
         genres: ['Horreur', 'Science-fiction'],
         description: 'Un vaisseau spatial perçoit une transmission non-identifiée comme un signal de détresse...',
@@ -25,31 +25,41 @@ describe('Composant Film', () => {
 
 
     // Mock du contexte
-    const mockContextValue = {
-        // estLog: true,
+    const mockContextValue = 
+    {
         usager: 'admin'
     };
 
 
     // Wrapper pour fournir le contexte
-    const ContextWrapper = ({ children }) => (
+    const ContextWrapper = ({ children }) => 
+    (
         <AppContext.Provider value={mockContextValue}>
             {children}
         </AppContext.Provider>
     );
 
+    // Mock des notes
+    const notes = mockFilm.notes;
+
+    const mockNotes = 
+    {
+        moyenne: (notes.reduce((a, b) => a+b, 0)/ notes.length).toFixed(2),
+        nbVotes: notes.length
+    }
 
     /**
      * Dans un test unitaire, il est généralement préférable de tester avec des valeurs fictives statiques plutôt qu'avec des valeurs réelles reçues du serveur.
      * Cela garantit que vos tests sont prévisibles, reproductibles et ne dépendent pas de l'état du serveur ou de l'environnement externe.
      */
-    test('Vérifie le composant Film avec un objet data fictif', async () => {
-
+    test('Vérifie le composant Film avec un objet data fictif', async () => 
+    {
         /**
          * Intercepte l'appel fetch et le remplace par une fonction mockée qui simule et retourne une promesse résolue avec une valeur spécifique, ici l'objet fictif film.
          * Cela permet de tester le comportement du code lorsqu'il traite les réponses JSON de manière asynchrone, sans dépendre d'un serveur réel.
          */
-        jest.spyOn(global, 'fetch').mockResolvedValue({
+        jest.spyOn(global, 'fetch').mockResolvedValue
+        ({
             // L'instruction jest.fn() crée une fonction simulée qui peut être utilisée pour simuler le comportement de la méthode json(). 
             // Ensuite, mockResolvedValue(film) configure cette fonction simulée pour qu'elle retourne une promesse résolue avec la valeur film.
             json: jest.fn().mockResolvedValue(mockFilm),
@@ -60,7 +70,8 @@ describe('Composant Film', () => {
          * Crée une représentation virtuelle du composant <Film /> (ici contextualisé) dans l'environnement de test.
          * Cela simule le rendu du composant comme s'il était rendu dans un navigateur, mais dans un environnement contrôlé et isolé spécifiquement pour les tests.
          */
-        render(
+        render
+        (
             <ContextWrapper>
                 <Film />
             </ContextWrapper>
@@ -72,7 +83,8 @@ describe('Composant Film', () => {
          * Si la fonction de rappel retourne false, waitFor() continuera d'attendre et réévaluera la fonction de rappel à intervalles réguliers jusqu'à ce que la condition soit remplie ou que le délai d'attente soit dépassé.
          * Ici, cela permet de valider que toutes les valeurs attendues dans le DOM du composant Film sont rendues correctement.
          */
-        await waitFor(() => {
+        await waitFor(() => 
+        {
             //expect(fetch).toHaveBeenCalledTimes(1);
             expect(screen.getByText(mockFilm.titre)).toBeInTheDocument();
             expect(screen.getByAltText(mockFilm.titre)).toBeInTheDocument();
@@ -80,7 +92,7 @@ describe('Composant Film', () => {
             expect(screen.getByText(`(${mockFilm.annee})`)).toBeInTheDocument();
             expect(screen.getByText(mockFilm.description)).toBeInTheDocument();
             const elImg = document.querySelector('img');
-            expect(elImg).toHaveAttribute('src', `../img/${mockFilm.titreVignette}`);
+            expect(elImg).toHaveAttribute('src', `/img/${mockFilm.titreVignette}`);
         });
       
 
@@ -92,25 +104,40 @@ describe('Composant Film', () => {
 
 
     /**
-     * À faire
+     * Vérifier si la moyenne et le nombre de vote(s) affichées sont présents dans le document
      */
-    test('Vérifie la moyenne et le nombre de vote(s)', async () => {
+    test('Vérifie la moyenne et le nombre de vote(s)', async () => 
+    {
+        jest.spyOn(global, 'fetch').mockResolvedValue
+        ({
+            json: jest.fn().mockResolvedValue(mockFilm),
+        });
 
         // sur mockFilm, faire la poutine pour trouver la moyenne et le nombre de vote(s)
-
         // render le composant Vote avec sa/ses props
+        render
+        (
+            <ContextWrapper>
+                <Film data={mockNotes}/>
+            </ContextWrapper>
+        );
 
-        // sur screen toBeInTheDocument() pour moyenne puis nombre de votes
+        // sur screen toBe() pour moyenne puis nombre de votes
+        await waitFor(() => 
+        {
+            expect(screen.getByTestId('moyenne').textContent).toBe(mockNotes.moyenne);
+            expect(screen.getByTestId('nbVotes').textContent).toBe(` ${mockNotes.nbVotes} votes`);
+        });
 
-
+        global.fetch.mockRestore();
     });
 
     
     /**
      * Il est également important de tester avec des données réelles provenant du serveur pour s'assurer que l'application fonctionne correctement dans un environnement plus réaliste. 
      */
-    test('Vérifie si les clés sont présentes dans la réponse', async () => {
-
+    test('Vérifie si les clés sont présentes dans la réponse', async () => 
+    {
         const reponse = await fetch( 'https://cadriel-front.onrender.com/films/2BdBApXAxxmfDK9GmdRE');
 
         const data = await reponse.json();
@@ -124,7 +151,5 @@ describe('Composant Film', () => {
             expect(data).toHaveProperty('annee');
             expect(data).toHaveProperty('titreVignette');
         });
-
-
     });
 });

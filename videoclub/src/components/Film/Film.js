@@ -111,8 +111,9 @@ function Film()
 
             <div className='vote'>
               <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
-              <span className='bold'>{moyenne}</span> 
-              | {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' } 
+              <span className='bold' data-testid="moyenne">{moyenne}</span> 
+              | 
+              <span data-testid="nbVotes"> {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' }</span>
             </div>
           
             <p><span className='bold'>Réalisateur : </span>{film.realisation}</p>

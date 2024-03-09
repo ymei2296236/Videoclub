@@ -8,8 +8,6 @@ function Entete(props)
 {
   const context = useContext(AppContext);
 
-  // console.log(props);
-
   return (
     <header className='entete__container'>
 

@@ -20,18 +20,24 @@ function App()
   const widthScreen = screenSize.width;
 
   // console.log(widthScreen);
-  let loggingInitial;
 
-  if(localStorage.logging) loggingInitial = JSON.parse(localStorage.logging);
-  
-  else loggingInitial = { usager:'' };
-  
-  const [logging, setLogging] = useState(loggingInitial);
+  // récupère l'état de logging depuis Local storage au chargement de la page
+  let loggingLocal = { usager:'' };
 
+  if(localStorage.logging) loggingLocal = JSON.parse(localStorage.logging);
+  
+  const [logging, setLogging] = useState(loggingLocal);
+
+
+  /**
+   * Enregistre l'info de logging au Local Storage lorsque l'utilisateur se connecte
+   * @param {HTMLElement} e 
+   */
   function login(e)
   {
-    // e.preventDefault();
+    e.preventDefault();
 
+    // Enregistre l'info de logging
     let aLogging = {};
 
     if(e.target.usager.value === 'admin') 
@@ -39,13 +45,11 @@ function App()
       // estLog(prevEstLog => !prevEstLog);
       // setLogging({estLog:true, usager: e.target.usager.value});
       // setLogging(logging => ({...logging, estLog: true, usager: e.target.usager.value}));
-    
+      
       aLogging['usager'] = e.target.usager.value;
       localStorage.setItem("logging", JSON.stringify(aLogging));
       
-      e.target.reset(); // si c'est la bonne valeur, réinitialiser le champs
-      setLogging(localStorage.logging);
-
+      setLogging(aLogging);
     }
   }
 
