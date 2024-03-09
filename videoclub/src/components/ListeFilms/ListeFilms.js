@@ -36,25 +36,20 @@ function ListeFilms(props)
         // console.log(data);
         setListeFilms(data);
         setEstCharge(true);
+
       } )
-  // [] executer seulement dans la première rendu
+  // [] executer seulement a la première rendu
   // [urlListeFilms] executer chaque fois 'urlListeFilms' se change
   }, [urlListeFilms]);
 
 
-  
   /**
-   * Gère l'url de l'API
-   * @param {String} nouveauUrl 
-  */
-  function handleUrl(nouveauUrl)
-  {
-   setUrlListeFilms(() => nouveauUrl)
-  }
-
-  function handleFiltre(nouveauFiltre)
+   * Gere les filtres
+   */ 
+  function handleFiltres(nouveauFiltre, nouveauUrl)
   {
     SetFiltre(() => nouveauFiltre)
+    setUrlListeFilms(() => nouveauUrl)
   }
 
 
@@ -79,7 +74,7 @@ function ListeFilms(props)
           animate= {{ opacity: 1, x:0, transition }}
           exit={{ opacity: 0, x:-25, transition }}
         >
-          <Filtre handleUrl={handleUrl} handleFiltre={handleFiltre} filtre={filtre} />
+          <Filtre handleFiltres={handleFiltres} filtre={filtre} />
         </motion.div>
       </div>
 
