@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import './Entete.css';
+import { useContext } from 'react';
 import { AppContext} from '../App/App';
-import  { useContext } from 'react';
+import './Entete.css';
 
  
 function Entete(props) 
@@ -17,11 +17,11 @@ function Entete(props)
 
         <div className='entete__menu'>
           <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
-          {/* {props.logging.estLog? <NavLink to="/admin"><h2>Admin</h2></NavLink>: '' } */}
-          {context.usager?
-            <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
-          : '' }
+        {context.usager?
+          <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
+        : '' }
         </div>
+
       </nav>
 
       {!context.usager?

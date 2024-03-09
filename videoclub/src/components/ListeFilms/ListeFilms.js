@@ -7,23 +7,11 @@ import './ListeFilms.css';
 
 
 
-function ListeFilms(props) 
+function ListeFilms() 
 {
-  // console.log(props);
-  // useState fait un rendu dès que l'état changé 
-  const [listeFilms, setListeFilms] = useState([]);
-  // const [urlListeFilms, setUrlListeFilms] = useState('data/titre-asc.json');
+  const [listeFilms, setListeFilms] = useState([]); // useState fait un rendu dès que l'état changé 
   const [urlListeFilms, setUrlListeFilms] = useState('https://cadriel-front.onrender.com/films');
-  const [filtre, SetFiltre] = useState();
   const [estCharge, setEstCharge] = useState(false);
-
-  const transition = { duration: 0.5, ease: 'easeInOut'};
-
-  const variant = { 
-    hidden:{ opacity: 0, y:25 },
-    visible:{ opacity: 1, y:0, transition },
-    exit:{ opacity: 0, y:25, transition },
-  }
 
   /**
    * Fait un appel à la base de données suite au changement de listFilms
@@ -32,26 +20,25 @@ function ListeFilms(props)
   {
     fetch(urlListeFilms)
       .then((response) => response.json())
-      .then((data) => {
+      .then((data) => 
+      {
         // console.log(data);
         setListeFilms(data);
         setEstCharge(true);
+      })
+  }, [urlListeFilms]); // [] executer seulement a la première rendu; [urlListeFilms] executer a chaque fois 'urlListeFilms' se change
 
-      } )
-  // [] executer seulement a la première rendu
-  // [urlListeFilms] executer chaque fois 'urlListeFilms' se change
-  }, [urlListeFilms]);
-
-
+  
   /**
    * Gere les filtres
    */ 
+  const [filtreActif, setFiltreActif] = useState();
+
   function handleFiltres(nouveauFiltre, nouveauUrl)
   {
-    SetFiltre(() => nouveauFiltre)
-    setUrlListeFilms(() => nouveauUrl)
+    setFiltreActif(nouveauFiltre);
+    setUrlListeFilms(nouveauUrl);
   }
-
 
   /**
    * Création des tuilesFilm
@@ -59,9 +46,25 @@ function ListeFilms(props)
   const tuilesFilm = listeFilms.map((film, index)=>
   {
     return  <Link key={index} data={film} to={`/film/${film.id}`}  className="liste__tuile">
-              <TuileFilm key={index} data={film} urlListeFilms={urlListeFilms}/>
+              <TuileFilm key={index} data={film} filtreActif={filtreActif}/>
             </Link>
   })
+
+
+
+  // definir les parametres defauts de transition
+  const transition = 
+  { 
+    duration: 0.5, 
+    ease: 'easeInOut'
+  }; 
+
+  const variant = 
+  { 
+    hidden:{ opacity: 0, y:25 },
+    visible:{ opacity: 1, y:0, transition },
+    exit:{ opacity: 0, y:25, transition },
+  };
 
   
   return (
@@ -74,12 +77,12 @@ function ListeFilms(props)
           animate= {{ opacity: 1, x:0, transition }}
           exit={{ opacity: 0, x:-25, transition }}
         >
-          <Filtre handleFiltres={handleFiltres} filtre={filtre} />
+          <Filtre handleFiltres={handleFiltres} filtreActif={filtreActif} />
         </motion.div>
       </div>
 
-      {estCharge ? (
-
+      {estCharge ? 
+      (
         <motion.div
           key='liste-film'
           initial='hidden' 
@@ -88,12 +91,10 @@ function ListeFilms(props)
           variants={variant}
           className="catalogue__liste" 
         >
-          {tuilesFilm}
           
+          {tuilesFilm}
         </motion.div>
-
       ) : ('')}
-
     </main>
   );
 }

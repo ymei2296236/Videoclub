@@ -1,25 +1,24 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Accueil from '../Accueil/Accueil';
-import ListeFilms from '../ListeFilms/ListeFilms';
+import Admin from '../Admin/Admin';
 import Entete from '../Entete/Entete';
 import Film from '../Film/Film';
+import ListeFilms from '../ListeFilms/ListeFilms';
 import NotFound from '../NotFound/NotFound';
-import Admin from '../Admin/Admin';
 import './App.css';
 
-import useScreenSize from '../useScreenSize';
+// import useScreenSize from '../useScreenSize';
 
 export const AppContext =  React.createContext();
 
 function App() 
 {
   const location = useLocation();
-  const screenSize = useScreenSize();
-  const widthScreen = screenSize.width;
 
-  // console.log(widthScreen);
+  // const screenSize = useScreenSize();
+  // const widthScreen = screenSize.width;
 
   // récupère l'état de logging depuis Local storage au chargement de la page
   let loggingLocal = { usager:'' };
@@ -27,7 +26,6 @@ function App()
   if(localStorage.logging) loggingLocal = JSON.parse(localStorage.logging);
   
   const [logging, setLogging] = useState(loggingLocal);
-
 
   /**
    * Enregistre l'info de logging au Local Storage lorsque l'utilisateur se connecte
@@ -48,7 +46,6 @@ function App()
       
       aLogging['usager'] = e.target.usager.value;
       localStorage.setItem("logging", JSON.stringify(aLogging));
-      
       setLogging(aLogging);
     }
   }
@@ -63,7 +60,7 @@ function App()
       <AnimatePresence mode='wait'>
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Accueil />} />
-          <Route path="/liste-films" element={<ListeFilms widthScreen={widthScreen}/>} />
+          <Route path="/liste-films" element={<ListeFilms/>} />
           <Route path="/film/:id" element={<Film />} />
           <Route path="/admin" element={logging? <Admin/> : <Navigate to="/"/>} />
           <Route path="*" element={<NotFound />} />

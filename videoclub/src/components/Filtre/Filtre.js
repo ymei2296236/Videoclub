@@ -42,19 +42,19 @@ function Filtre(props)
      */
     function gereActive(e)
     {
-        let filtre = e.target.dataset.jsFiltre,
+        let filtreActif = e.target.dataset.jsFiltre,
             urlsFiltres = document.querySelectorAll('[data-js-filtre]');
 
         for (let i = 0, l = urlsFiltres.length; i < l; i++) 
         {
-            if(urlsFiltres[i].dataset.jsFiltre !== filtre) urlsFiltres[i].classList.remove('active');
+            if(urlsFiltres[i].dataset.jsFiltre !== filtreActif) urlsFiltres[i].classList.remove('active');
         }
         e.target.classList.add('active');
     }
 
     return (
         <div>
-            <p className='catalogue__tri' ><span className='btn btn-dark'>Trier par</span> <span data-testid="filtreActif">{props.filtre}</span></p>
+            <p className='catalogue__tri' ><span className='btn btn-dark'>Trier par</span> <span data-testid="filtreActif">{props.filtreActif}</span></p>
 
             <ul className="filtre">
                 <label className="filtre-item" data-js-filtre="annee-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>

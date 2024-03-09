@@ -1,10 +1,11 @@
 import './TuileFilm.css';
 
 
-function TuileFilm(props) {
-
+function TuileFilm(props) 
+{
   return (
        <article>
+        
         <div className="liste__containerImg">
           <img src={`img/${props.data.titreVignette}`} alt={props.data.titre}/>
         </div>
@@ -12,10 +13,11 @@ function TuileFilm(props) {
         <div className="liste__info">
           <h2>{props.data.titre}</h2> 
           <p>
-            {props.urlListeFilms === 'https://cadriel-front.onrender.com/films?tri=annee' || props.urlListeFilms === 'https://cadriel-front.onrender.com/films?tri=annee&ordre=desc' ? props.data.annee : ''}
-            {props.urlListeFilms === 'https://cadriel-front.onrender.com/films?tri=realisation' || props.urlListeFilms === 'https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc' ? props.data.realisation : ''}
+            {props.filtreActif === 'Années (plus récent)' || props.filtreActif === 'Années (moins récent)' ? props.data.annee : ''}
+            {props.filtreActif === 'Nom du réalisateur (A-Z)' || props.filtreActif === 'Nom du réalisateur (Z-A)' ? props.data.realisation : ''}
           </p> 
         </div>
+
        </article>
   );
 }
