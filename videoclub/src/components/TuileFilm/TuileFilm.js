@@ -6,7 +6,7 @@ function TuileFilm(props)
   return (
        <article>
         
-        <div className="liste__containerImg">
+        <div className="tuile__img">
           <img src={`img/${props.data.titreVignette}`} alt={props.data.titre}/>
         </div>
 

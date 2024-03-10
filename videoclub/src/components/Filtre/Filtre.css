@@ -16,6 +16,11 @@
 		border-bottom: 1px solid var(--coul-texte);
 	}
 
+	.filtre-item:hover {
+		background-color: var(--coul-tertiary);
+		opacity: 0.9;
+	}
+
 	input[type="radio"] {
 		accent-color: var(--coul-primary);
 		height: 20px;

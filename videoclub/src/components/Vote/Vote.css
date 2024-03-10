@@ -15,6 +15,15 @@
 		padding: var(--espace-3quarts);
 	}
 
+	.votes__item {
+		pointer-events: auto;
+		cursor: pointer;
+	}
+
+	.votes__item:hover {
+		opacity: 0.9;
+	}
+
 	.votes__item input {
 		position: absolute;
 		opacity: 0;
@@ -27,5 +36,6 @@
 		display: flex;
 		gap: var(--espace-2);
 		align-items: center;
+		margin-right: var(--espace-2);
 	}
 }

@@ -45,7 +45,7 @@ function ListeFilms()
    */
   const tuilesFilm = listeFilms.map((film, index)=>
   {
-    return  <Link key={index} data={film} to={`/film/${film.id}`}  className="liste__tuile">
+    return  <Link key={index} data={film} to={`/film/${film.id}`}  className="tuile">
               <TuileFilm key={index} data={film} filtreActif={filtreActif}/>
             </Link>
   })

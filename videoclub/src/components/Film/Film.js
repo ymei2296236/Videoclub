@@ -104,7 +104,7 @@ function Film()
 
   return (
     <main className="film">
-        {/* <div className='film__container' style={{backgroundImage:"url(" + `../img/${film.titreVignette}` + ")", opacity: 0.2}}> */}
+
         <div className='film__container'>
 
           <div className="film__img">
@@ -129,7 +129,8 @@ function Film()
           </div>
 
         </div>
-        
+        <div className='film__bgImg' style={{backgroundImage:"url(" + `../img/${film.titreVignette}` + ")", opacity: 0.05}}>
+        </div>
         <div className='film__commentaires'>
 
           {context.usager? 
