@@ -50,12 +50,23 @@ function App()
     }
   }
 
+  /**
+   * Gestion de logout
+   */
+  function logout()
+  {
+    let aLogging = {};
+
+    localStorage.clear();
+    setLogging(aLogging);
+  }
+
   
   return (
     // Tous les components dans AppContext auront accèss au logging
     <AppContext.Provider value={logging}>
       {/* <Router> */}
-      <Entete handleLogin={login}/>
+      <Entete handleLogin={login} handleLogout={logout}/>
 
       <AnimatePresence mode='wait'>
         <Routes location={location} key={location.key}>
