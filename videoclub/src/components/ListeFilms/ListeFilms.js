@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useAnimate, stagger } from 'framer-motion';
+import { motion } from 'framer-motion';
 import TuileFilm from '../TuileFilm/TuileFilm';
 import Filtre from '../Filtre/Filtre';
 import './ListeFilms.css';
@@ -44,9 +44,18 @@ function ListeFilms()
    */
   const tuilesFilm = listeFilms.map((film, index)=>
   {
-    return  <Link key={index} data={film} to={`/film/${film.id}`}  className="tuile">
-              <TuileFilm key={index} data={film} filtreActif={filtreActif}/>
-            </Link>
+    return  <motion.div
+              key={index}
+              initial={{ opacity:0, x: -50}}
+              animate={{ opacity:1, x: 0}}
+              exit={{ opacity: 0, x:-50 }}
+              transition={{ duration: 0.5, delay:index * 0.05}}
+              className="tuile"
+            >
+              <Link data={film} to={`/film/${film.id}`} >
+                <TuileFilm data={film} filtreActif={filtreActif}/>
+              </Link>
+            </motion.div>
   })
 
 
@@ -72,9 +81,10 @@ function ListeFilms()
         {/* <p className='catalogue__tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p> */}
         <motion.div
           key='filtre'
-          initial={{ opacity: 0, x:-25 }} 
-          animate= {{ opacity: 1, x:0, transition }}
-          exit={{ opacity: 0, x:-25, transition }}
+          initial='hidden' 
+          animate= 'visible'
+          exit='exit'
+          variants={variant}
         >
           <Filtre handleFiltres={handleFiltres} filtreActif={filtreActif} />
         </motion.div>
@@ -82,17 +92,9 @@ function ListeFilms()
 
       {estCharge ? 
       (
-        <motion.div
-          key='liste-film'
-          initial='hidden' 
-          animate='visible'
-          exit='exit'
-          variants={variant}
-          className="catalogue__liste" 
-        >
-          
+        <div className="catalogue__liste">
           {tuilesFilm}
-        </motion.div>
+        </div>
       ) : ('')}
     </main>
   );

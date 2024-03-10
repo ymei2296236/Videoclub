@@ -1,3 +1,13 @@
+.catalogue__tri {
+	background-color: var(--coul-texte);
+	color: var(--coul-tertiary);
+	padding: var(--espace-3quarts);
+	flex: 1;
+	display: flex;
+	gap: var(--espace-1);
+	align-items: center;
+}
+
 .filtre {
 	/* padding: var(--espace-1) 0; */
 

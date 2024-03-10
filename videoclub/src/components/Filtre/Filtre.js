@@ -1,4 +1,4 @@
-
+import { motion } from 'framer-motion';
 import './Filtre.css';
 
 
@@ -36,16 +36,16 @@ function Filtre(props)
         switch(filtre)
         {
             case 'titre-asc' : 
-                props.handleFiltres('Nom du film (A-Z)', 'https://cadriel-front.onrender.com/films?tri=titre');
+                props.handleFiltres('Film (A-Z)', 'https://cadriel-front.onrender.com/films?tri=titre');
                 break;
             case 'titre-desc' : 
-                props.handleFiltres('Nom du film (Z-A)', 'https://cadriel-front.onrender.com/films?tri=titre&ordre=desc');
+                props.handleFiltres('Film (Z-A)', 'https://cadriel-front.onrender.com/films?tri=titre&ordre=desc');
                 break;
             case 'realisation-asc' : 
-                props.handleFiltres('Nom du réalisateur (A-Z)', 'https://cadriel-front.onrender.com/films?tri=realisation');
+                props.handleFiltres('Réalisateur (A-Z)', 'https://cadriel-front.onrender.com/films?tri=realisation');
                 break;
             case 'realisation-desc' : 
-                props.handleFiltres('Nom du réalisateur (Z-A)' ,'https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc');
+                props.handleFiltres('Réalisateur (Z-A)' ,'https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc');
                 break;
             case 'annee-desc' : 
                 props.handleFiltres('Années (plus récent)', 'https://cadriel-front.onrender.com/films?tri=annee&ordre=desc');
@@ -74,7 +74,10 @@ function Filtre(props)
     return (
         <div>
             <p className='catalogue__tri' >
-                <span className='btn btn-dark'>Trier par</span> 
+                <button 
+                className='btn btn-dark'>
+                    Trier par
+                </button> 
                 <span data-testid="filtreActif">{props.filtreActif}</span>
             </p>
 
