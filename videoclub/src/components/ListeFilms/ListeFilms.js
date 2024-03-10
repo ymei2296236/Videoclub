@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useAnimate, stagger } from 'framer-motion';
 import TuileFilm from '../TuileFilm/TuileFilm';
 import Filtre from '../Filtre/Filtre';
 import './ListeFilms.css';
@@ -22,7 +22,6 @@ function ListeFilms()
       .then((response) => response.json())
       .then((data) => 
       {
-        // console.log(data);
         setListeFilms(data);
         setEstCharge(true);
       })

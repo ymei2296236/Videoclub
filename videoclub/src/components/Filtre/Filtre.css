@@ -4,7 +4,6 @@
 	.filtre-item {
 		display: flex;
 		position: relative;
-
 		cursor: pointer;
 		-webkit-user-select: none;
 		-moz-user-select: none;
@@ -26,5 +25,6 @@
 		height: 20px;
 		width: 20px;
 		border-bottom-color: #fff;
+		cursor: pointer;
 	}
 }

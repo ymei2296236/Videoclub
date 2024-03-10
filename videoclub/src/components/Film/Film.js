@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from 'react';
+import { motion} from 'framer-motion';
 import { AppContext} from '../App/App';
 import Vote from '../Vote/Vote';
 import Commentaire from '../Commentaire/Commentaire';
@@ -102,22 +103,41 @@ function Film()
   }
 
 
+    // definir les parametres defauts de transition
+    const transition = 
+    { 
+      duration: 0.5, 
+      ease: 'easeInOut'
+    }; 
+  
+    const variant = 
+    { 
+      hidden:{ opacity: 0, x:-40 },
+      visible:{ opacity: 1, x:0, transition },
+      exit:{ opacity: 0, x:-40, transition },
+    };
+
   return (
     <main className="film">
 
         <div className='film__container'>
 
-          <div className="film__img">
+          <motion.div 
+          key='film__img'
+          initial='hidden' 
+          animate='visible'
+          exit='exit'
+          variants={variant}
+          className="film__img">
             <img src={`/img/${film.titreVignette}`} alt={film.titre}/>
-          </div>
+          </motion.div>
 
           <div className="film__infos">
             <h1>{film.titre} <span className='annee'>({film.annee})</span></h1>
 
             <div className='vote'>
               <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
-              <span className='bold' data-testid="moyenne">{moyenne}</span> 
-              | 
+              <span className='bold' data-testid="moyenne">{moyenne}/5,</span>
               <span data-testid="nbVotes"> {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' }</span>
             </div>
           
