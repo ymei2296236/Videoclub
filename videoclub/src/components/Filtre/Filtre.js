@@ -1,8 +1,30 @@
+import { motion } from 'framer-motion';
 import './Filtre.css';
 
 
 function Filtre(props) 
 {
+    /**
+     * Creer le dom des filtres 
+     */
+    const filtres =
+    [
+        {dataJs: 'annee-asc', texte: 'Années de production (moins récent)'},
+        {dataJs: 'annee-desc', texte: 'Années de production (plus récent)'},
+        {dataJs: 'titre-asc', texte: 'Nom du film (A-Z)'},
+        {dataJs: 'titre-desc', texte: 'Nom du film (Z-A)'},
+        {dataJs: 'realisation-asc', texte: 'Nom du réalisateur (A-Z)'},
+        {dataJs: 'realisation-desc', texte: 'Nom du réalisateur (Z-A)'}
+    ];
+    
+    const domFiltres = filtres.map((element, index) => 
+    {
+        return  <label key={index} className="filtre-item" data-js-filtre={element.dataJs} onClick={(e)=>{filtre(e); gereActive(e)}}>
+                    {element.texte}
+                    <input type="radio" name="filtre"/> 
+                </label>
+    });
+    
     /**
      * Récupère la valeur du filtre cliqué
      * @param {HTMLElement} e 
@@ -10,35 +32,26 @@ function Filtre(props)
     function filtre(e)
     {
         let filtre = e.currentTarget.dataset.jsFiltre;
-        // console.log(e.currentTarget.dataset.jsFiltre);
 
         switch(filtre)
         {
             case 'titre-asc' : 
-                props.handleUrl('https://cadriel-front.onrender.com/films?tri=titre');
-                props.handleFiltre('Nom du film (A-Z)');
+                props.handleFiltres('Film (A-Z)', 'https://cadriel-front.onrender.com/films?tri=titre');
                 break;
             case 'titre-desc' : 
-                props.handleUrl('https://cadriel-front.onrender.com/films?tri=titre&ordre=desc');
-                props.handleFiltre('Nom du film (Z-A)');
-                
+                props.handleFiltres('Film (Z-A)', 'https://cadriel-front.onrender.com/films?tri=titre&ordre=desc');
                 break;
-                case 'realisation-asc' : 
-                // props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation');
-                props.handleFiltre('Nom du réalisateur (A-Z)');
+            case 'realisation-asc' : 
+                props.handleFiltres('Réalisateur (A-Z)', 'https://cadriel-front.onrender.com/films?tri=realisation');
                 break;
             case 'realisation-desc' : 
-                props.handleUrl('https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc');
-                props.handleFiltre('Nom du réalisateur (Z-A)');
+                props.handleFiltres('Réalisateur (Z-A)' ,'https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc');
                 break;
             case 'annee-desc' : 
-                props.handleUrl('https://cadriel-front.onrender.com/films?tri=annee&ordre=desc');
-                props.handleFiltre('Années (plus récent)');
+                props.handleFiltres('Années (plus récent)', 'https://cadriel-front.onrender.com/films?tri=annee&ordre=desc');
                 break;
             default:
-                props.handleUrl('https://cadriel-front.onrender.com/films?tri=annee');
-                props.handleFiltre('Années (moins récent)');
-
+                props.handleFiltres('Années (moins récent)', 'https://cadriel-front.onrender.com/films?tri=annee');
         }
     } 
 
@@ -48,46 +61,28 @@ function Filtre(props)
      */
     function gereActive(e)
     {
-        let filtre = e.target.dataset.jsFiltre,
+        let filtreActif = e.target.dataset.jsFiltre,
             urlsFiltres = document.querySelectorAll('[data-js-filtre]');
 
         for (let i = 0, l = urlsFiltres.length; i < l; i++) 
         {
-            if(urlsFiltres[i].dataset.jsFiltre !== filtre) urlsFiltres[i].classList.remove('active');
+            if(urlsFiltres[i].dataset.jsFiltre !== filtreActif) urlsFiltres[i].classList.remove('active');
         }
-
         e.target.classList.add('active');
     }
 
     return (
         <div>
-            <p data-testid="filtreActif">Nom du réalisateur(A-Z)</p>
+            <p className='catalogue__tri' >
+                <button 
+                className='btn btn-dark'>
+                    Trier par
+                </button> 
+                <span data-testid="filtreActif">{props.filtreActif}</span>
+            </p>
 
             <ul className="filtre">
-                <label className="filtre-item" data-js-filtre="annee-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                    Années de production (moins récent)
-                        <input type="radio" name="filtre"/> 
-                </label>
-                <label className="filtre-item" data-js-filtre="annee-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                    Années de production (plus récent)
-                        <input type="radio" name="filtre"/>   
-                </label>
-                <label className="filtre-item" data-js-filtre="titre-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                    Nom du film (A-Z)
-                        <input type="radio" name="filtre"/> 
-                </label>
-                <label className="filtre-item" data-js-filtre="titre-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                    Nom du film (Z-A)
-                        <input type="radio" name="filtre"/>  
-                </label>
-                <label className="filtre-item" data-js-filtre="realisation-asc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                    Nom du réalisateur(A-Z)
-                        <input type="radio" name="filtre"/>  
-                </label>
-                <label className="filtre-item" data-js-filtre="realisation-desc" onClick={(e)=>{filtre(e); gereActive(e)}}>
-                    Nom du réalisateur(Z-A)
-                        <input type="radio" name="filtre"/>
-                </label>
+                { domFiltres }
             </ul>
         </div>
     );

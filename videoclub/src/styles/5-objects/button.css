@@ -5,11 +5,22 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	border: 0px;
+	pointer-events: auto;
+	cursor: pointer;
+}
+
+.btn:hover {
+	transform: scale(1.1);
 }
 
 .btn-primary {
 	padding: var(--espace-3quarts);
 	background-color: var(--coul-primary);
+}
+
+.btn-primary:hover {
+	text-decoration: underline;
+	text-underline-offset: var(--espace-3quarts);
 }
 
 .btn-secondary {
@@ -21,4 +32,9 @@
 	padding: var(--espace-3quarts);
 	background-color: var(--coul-texte);
 	color: var(--coul-primary);
+}
+
+.btn-dark:hover {
+	color: var(--coul-texte);
+	background-color: var(--coul-primary);
 }

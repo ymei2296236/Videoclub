@@ -1,5 +1,5 @@
-import './Vote.css';
 import { useState } from 'react';
+import './Vote.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarOutlined } from '@fortawesome/free-regular-svg-icons';
@@ -16,8 +16,8 @@ function Vote(props)
     // Récupère la valeur de vote
     function voter(e)
     {
-        setVote(() => e.target.value);
-        props.handleVote(e);
+        setVote(e.target.value);
+        props.handleStyleVote(e);
     }
 
     // Soumettre la note à la BD
@@ -38,7 +38,6 @@ function Vote(props)
                 aNotes = props.notes;
                 aNotes.push(parseInt(vote));
             }
-
             props.appelAsync({notes: aNotes});
         }
     }
@@ -46,11 +45,15 @@ function Vote(props)
     // Créer le dom des notes
     const notes = [1, 2, 3, 4, 5];
       
-    const domNotes = notes.map((note, index)=>{
-
-        return <label className='votes__item' key={ index }> {note}<input type="radio" name="vote" value={ note } onClick={(e) => {voter(e)}} data-js-vote/> {props.vote === note? elStarActive : elStar}</label>
-
+    const domNotes = notes.map((note, index)=>
+    {
+        return <label className='votes__item' key={ index }> 
+                    {note}
+                    <input type="radio" name="vote" value={ note } onClick={(e) => {voter(e)}} data-js-vote/> 
+                    {props.valeurVote === note? elStarActive : elStar}
+                </label>
     })
+
 
     return (
         <div className='votes'>

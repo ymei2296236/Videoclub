@@ -1,6 +1,6 @@
-import './Commentaire.css';
 import {useContext } from 'react';
 import { AppContext} from '../App/App';
+import './Commentaire.css';
 
 function Commentaire(props) 
 {
@@ -12,14 +12,15 @@ function Commentaire(props)
     async function soumettreCommentaire(e)
     {
         e.preventDefault();
-        // console.log(e.target.commentaire.value);
 
         let inputCommentaire =e.target.commentaire.value;
 
         e.target.reset();
-        // Si c'est la première note
+
+        // Si le champ est saisi
         if(inputCommentaire !== undefined && inputCommentaire !== '')
         {
+            // Si c'est la première note
             if(!props.commentaires)
             {
                 aCommentaires.push({ commentaire: inputCommentaire, usager: context.usager});

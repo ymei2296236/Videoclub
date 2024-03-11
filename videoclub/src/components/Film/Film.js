@@ -1,9 +1,10 @@
-import './Film.css';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from 'react';
-import Vote from '../Vote/Vote';
+import { motion} from 'framer-motion';
 import { AppContext} from '../App/App';
+import Vote from '../Vote/Vote';
 import Commentaire from '../Commentaire/Commentaire';
+import './Film.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,48 +12,55 @@ function Film()
 {
   const context = useContext(AppContext);
 
-  // Afficher les infos du film par son id au chargement de la page
   const {id} = useParams();
   const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
-  // const urlFilm = `data/titre-asc.json/${id}`; 
 
+  // Afficher les infos du film par son id au chargement de la page
   useEffect(()=>
   {
     fetch(urlFilm)
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data);
-        handleFilm(data);
-      })
+    .then((response) => response.json())
+    .then((data) => 
+    {
+      updateFilm(data);
+    })
   }, [urlFilm]);
-
-  // Tracer le changement d'état du film
-  const [film, setFilm] = useState({});
-
-  // Tracer le changement d'état des stats des votes
-  const [moyenne, setMoyenne] = useState(0);
-  const [nbVotes, setNbVotes] = useState(0);
-
-  const [vote, setVote] = useState();
   
+  
+  const [film, setFilm] = useState({});
+    
   // Créer le dom des genres
   const genres = film.genres?.map((genre, index)=>{
     return  <small className='genre' key={index}>{genre} </small>
   })
 
+  // Creer le dom des commentaires
   const domCommentaires = film.commentaires?.map((commentaire, index)=>{
     return <p key={index}><span className='bold'>{commentaire.usager} </span> : <span>{commentaire.commentaire} </span> </p>
   });
 
+  // Tracer le changement d'état des stats des votes
+  const [moyenne, setMoyenne] = useState(0);
+  const [nbVotes, setNbVotes] = useState(0);
+  const [valeurVote, setValeurVote] = useState();
+
+  /**
+   * Recupere la valeur de note saisie pour gerer le style d'etoile dans le composant Vote
+   * @param {HTMLElement} e 
+   */
+  function handleStyleVote(e)
+  {
+    setValeurVote(parseInt(e.target.value));
+  }
+
   // Mettre à jour le film
-  function handleFilm(data)
+  function updateFilm(data)
   {
     // Mettre à jour les infos du film  
     setFilm(data);
 
     // Gérer l'affichage des votes
     let noteTotale = data.notes;
-    // console.log(noteTotale);
 
     if (noteTotale)        
     {
@@ -65,11 +73,10 @@ function Film()
     }
   }
 
-  function handleVote(e)
-  {
-    setVote(parseInt(e.target.value));
-  }
-
+  /**
+   * Appel async pour modifier et reafficher un film  
+   * @param {object} data 
+   */
   async function appelAsync(data)
   {
     const oOptions = 
@@ -80,55 +87,74 @@ function Film()
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-        // body: JSON.stringify(data)
     }
 
-    // PUT pour modifier le champ de notes du film 
-    let putCommentaire = await fetch(urlFilm, oOptions),
-    // GET pour afficher à nouveau les votes 
+    // PUT pour modifier le film 
+    let putFilm = await fetch(urlFilm, oOptions),
+    // GET pour reaffichier le film 
         getFilm = await fetch(urlFilm);
 
-    Promise.all([putCommentaire, getFilm])
+    Promise.all([putFilm, getFilm])
         .then(respone => respone[1].json())
-        .then((data) => {
-        //   console.log(data);
-        handleFilm(data);
+        .then((data) => 
+        {
+        updateFilm(data);
         })      
-    }
+  }
 
+
+    // definir les parametres defauts de transition
+    const transition = 
+    { 
+      duration: 0.5, 
+      ease: 'easeInOut'
+    }; 
+  
+    const variant = 
+    { 
+      hidden:{ opacity: 0, x:-40 },
+      visible:{ opacity: 1, x:0, transition },
+      exit:{ opacity: 0, x:-40, transition },
+    };
 
   return (
     <main className="film">
-        {/* <div className='film__container' style={{backgroundImage:"url(" + `../img/${film.titreVignette}` + ")", opacity: 0.2}}> */}
+
         <div className='film__container'>
 
-          <div className="film__img">
-            <img src={`../img/${film.titreVignette}`} alt={film.titre}/>
-          </div>
+          <motion.div 
+          key='film__img'
+          initial='hidden' 
+          animate='visible'
+          exit='exit'
+          variants={variant}
+          className="film__img">
+            <img src={`/img/${film.titreVignette}`} alt={film.titre}/>
+          </motion.div>
 
           <div className="film__infos">
             <h1>{film.titre} <span className='annee'>({film.annee})</span></h1>
 
             <div className='vote'>
               <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
-              <span className='bold'>{moyenne}</span> 
-              | {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' } 
+              <span className='bold' data-testid="moyenne">{moyenne}/5,</span>
+              <span data-testid="nbVotes"> {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' }</span>
             </div>
           
             <p><span className='bold'>Réalisateur : </span>{film.realisation}</p>
             <p>{film.description}</p>
             <p className='genres'>{genres}</p>
 
-            <Vote notes={film.notes} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync} vote={vote} handleVote={handleVote}/>
+            <Vote notes={film.notes} appelAsync={appelAsync} valeurVote={valeurVote} handleStyleVote={handleStyleVote}/>
           </div>
 
         </div>
-
-        
+        <div className='film__bgImg' style={{backgroundImage:"url(" + `../img/${film.titreVignette}` + ")", opacity: 0.05}}>
+        </div>
         <div className='film__commentaires'>
 
           {context.usager? 
-            <Commentaire commentaires={film.commentaires} urlFilm={urlFilm} handleFilm={handleFilm} appelAsync={appelAsync}/>
+            <Commentaire commentaires={film.commentaires} appelAsync={appelAsync}/>
           : ''}
 
           <div className='film__commentaire-list'>

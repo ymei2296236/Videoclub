@@ -38,13 +38,34 @@ describe('la description d\'un film', () => {
 
 
     /**
-     * À faire
+     * Vérifier si les clés titre, genres, realisation, description, annee et titreVigneete sont présentes pour chaque film reçu de l'API
      */
-    test('Vérifie si les clés sont présentes dans la réponse', async () => {
+    
+    test('Vérifie si les clés sont présentes dans la réponse',  async () => 
+    {
+        // appel async pour recuperer l'id des films
+        const reponse = await fetch( 'https://cadriel-front.onrender.com/films/');
+        const data = await reponse.json();
 
+        let aIdsFilm =[];
 
+        await data.map((film) =>{ aIdsFilm.push(film.id) });
 
-
-
+        // appel async pour recuperer les donnees de chaque film
+        aIdsFilm.forEach((idFilm) => async function() 
+        {
+            const reponse = await fetch( `https://cadriel-front.onrender.com/films/${idFilm}`);
+            const data = await reponse.json();
+    
+            await waitFor(() => 
+            {
+                expect(data).toHaveProperty('titre');
+                expect(data).toHaveProperty('genres');
+                expect(data).toHaveProperty('realisation');
+                expect(data).toHaveProperty('description');
+                expect(data).toHaveProperty('annee');
+                expect(data).toHaveProperty('titreVignette');
+            });
+        });
     });
 });

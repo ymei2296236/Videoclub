@@ -1,10 +1,19 @@
+.catalogue__tri {
+	background-color: var(--coul-texte);
+	color: var(--coul-tertiary);
+	padding: var(--espace-3quarts);
+	flex: 1;
+	display: flex;
+	gap: var(--espace-1);
+	align-items: center;
+}
+
 .filtre {
 	/* padding: var(--espace-1) 0; */
 
 	.filtre-item {
 		display: flex;
 		position: relative;
-
 		cursor: pointer;
 		-webkit-user-select: none;
 		-moz-user-select: none;
@@ -16,10 +25,16 @@
 		border-bottom: 1px solid var(--coul-texte);
 	}
 
+	.filtre-item:hover {
+		background-color: var(--coul-tertiary);
+		opacity: 0.9;
+	}
+
 	input[type="radio"] {
 		accent-color: var(--coul-primary);
 		height: 20px;
 		width: 20px;
 		border-bottom-color: #fff;
+		cursor: pointer;
 	}
 }

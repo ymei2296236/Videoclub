@@ -1,0 +1,17 @@
+.notFound {
+	text-align: center;
+	padding: var(--espace-4);
+
+	.notFound__code {
+		font-family: var(--police-titre);
+		font-size: 6rem;
+		color: var(--coul-primary);
+	}
+	.notFound__description {
+		font-family: var(--police-texte);
+		font-size: var(--text-sm);
+		color: var(--coul-texte);
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+}

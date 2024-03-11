@@ -11,8 +11,9 @@
 
 		.entete__menu {
 			display: flex;
-			margin-left: var(--espace-2);
-			gap: var(--espace-half);
+			align-items: center;
+			/* margin-left: var(--espace-2); */
+			/* gap: var(--espace-half); */
 		}
 	}
 	.entete__form {

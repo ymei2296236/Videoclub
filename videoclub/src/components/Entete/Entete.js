@@ -1,36 +1,38 @@
 import { NavLink } from 'react-router-dom';
-import './Entete.css';
+import { useContext } from 'react';
 import { AppContext} from '../App/App';
-import  { useContext } from 'react';
+import './Entete.css';
 
  
 function Entete(props) 
 {
   const context = useContext(AppContext);
 
-  // console.log(props);
 
   return (
     <header className='entete__container'>
 
       <nav className='entete__nav'>
 
-        <NavLink to="/"><h1> Video Club </h1></NavLink>
+        <NavLink to="/" className="btn btn-primary">Accueil</NavLink>
 
+        <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
+
+        {context.usager?
         <div className='entete__menu'>
-          <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
-          {/* {props.logging.estLog? <NavLink to="/admin"><h2>Admin</h2></NavLink>: '' } */}
-          {context.usager?
-            <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
-          : '' }
+          <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
+          <button className="btn btn-primary" onClick={props.handleLogout}>Logout</button> 
         </div>
+        : '' }
+
+
       </nav>
 
       {!context.usager?
-        <form className='entete__form' onSubmit={props.handleLogin}>
-          <input type="text" name="usager" placeholder="Nom de l'usager"></input>
-          <button className="btn btn-secondary">Login</button>
-        </form>
+      <form className='entete__form' onSubmit={props.handleLogin}>
+        <input type="text" name="usager" placeholder="Nom de l'usager"></input>
+        <button className="btn btn-secondary">Login</button>
+      </form>
       : ''}
 
     </header>
