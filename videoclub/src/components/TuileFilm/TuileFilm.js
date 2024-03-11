@@ -14,7 +14,7 @@ function TuileFilm(props)
             <h2>{props.data.titre}</h2> 
             <p>
               {props.filtreActif === 'Années (plus récent)' || props.filtreActif === 'Années (moins récent)' ? props.data.annee : ''}
-              {props.filtreActif === 'Nom du réalisateur (A-Z)' || props.filtreActif === 'Nom du réalisateur (Z-A)' ? props.data.realisation : ''}
+              {props.filtreActif === 'Réalisateur (A-Z)' || props.filtreActif === 'Réalisateur (Z-A)' ? props.data.realisation : ''}
             </p> 
           </div>
 
