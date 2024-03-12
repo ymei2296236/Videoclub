@@ -125,7 +125,7 @@ describe('Composant Film', () =>
         // sur screen toBe() pour moyenne puis nombre de votes
         await waitFor(() => 
         {
-            expect(screen.getByTestId('moyenne').textContent).toBe(mockNotes.moyenne);
+            expect(screen.getByTestId('moyenne').textContent).toBe(`${mockNotes.moyenne}/5,`);
             expect(screen.getByTestId('nbVotes').textContent).toBe(` ${mockNotes.nbVotes} votes`);
         });
 

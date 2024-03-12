@@ -47,14 +47,15 @@ describe('la description d\'un film', () => {
         const reponse = await fetch( 'https://cadriel-front.onrender.com/films/');
         const data = await reponse.json();
 
+        // recupere les ids de film
         let aIdsFilm =[];
 
         await data.map((film) =>{ aIdsFilm.push(film.id) });
 
         // appel async pour recuperer les donnees de chaque film
-        aIdsFilm.forEach((idFilm) => async function() 
+        for (let i = 0, l= aIdsFilm.length; i <l ; i++) 
         {
-            const reponse = await fetch( `https://cadriel-front.onrender.com/films/${idFilm}`);
+            const reponse = await fetch( `https://cadriel-front.onrender.com/films/${aIdsFilm[i]}`);
             const data = await reponse.json();
     
             await waitFor(() => 
@@ -66,6 +67,6 @@ describe('la description d\'un film', () => {
                 expect(data).toHaveProperty('annee');
                 expect(data).toHaveProperty('titreVignette');
             });
-        });
+        }
     });
 });
