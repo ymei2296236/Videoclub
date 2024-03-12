@@ -4,22 +4,11 @@
 	gap: var(--espace-1);
 	flex: 45%;
 	margin-top: var(--espace-1);
-	/* align-items: flex-start; */
 	justify-content: flex-end;
-
-	/* .commentaire__titre {
-		background-color: var(--coul-texte);
-		color: var(--coul-tertiary);
-		font-family: var(--police-titre);
-		font-size: var(--text-sm);
-		letter-spacing: 1px;
-		text-transform: uppercase;
-		text-align: center;
-		padding: var(--espace-3quarts);
-	} */
 
 	.commenter__textarea {
 		padding: var(--espace-half);
 		width: 100%;
+		font-family: var(--police-texte);
 	}
 }

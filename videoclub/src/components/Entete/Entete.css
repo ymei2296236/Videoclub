@@ -19,5 +19,9 @@
 	.entete__form {
 		display: flex;
 		gap: var(--espace-1);
+
+		.entete__input {
+			padding: 0 var(--espace-half);
+		}
 	}
 }

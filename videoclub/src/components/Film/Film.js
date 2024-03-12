@@ -96,10 +96,7 @@ function Film()
 
     Promise.all([putFilm, getFilm])
         .then(respone => respone[1].json())
-        .then((data) => 
-        {
-        updateFilm(data);
-        })      
+        .then((data) => updateFilm(data))  
   }
 
   // definir les parametres defauts de transition
