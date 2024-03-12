@@ -10,14 +10,16 @@ function Vote(props)
     const elStar = <FontAwesomeIcon icon={faStarOutlined} size="lg" style={{color: "#ffc259"}} />;
     const elStarActive = <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259"}} />;
 
-    // Tracer le changement d'état de vote
+    // Tracer le changement de vote
     const [vote, setVote] = useState();
 
     // Récupère la valeur de vote
     function voter(e)
     {
         setVote(e.target.value);
-        props.handleStyleVote(e);
+
+        // ajouter style active a l'etoile clique
+        props.handleStyleVote(e.target.value);
     }
 
     // Soumettre la note à la BD
@@ -39,6 +41,9 @@ function Vote(props)
                 aNotes.push(parseInt(vote));
             }
             props.appelAsync({notes: aNotes});
+
+            // réinitialiser le style des etoiles
+            props.handleStyleVote();
         }
     }
 
@@ -49,15 +54,14 @@ function Vote(props)
     {
         return <label className='votes__item' key={ index }> 
                     {note}
-                    <input type="radio" name="vote" value={ note } onClick={(e) => {voter(e)}} data-js-vote/> 
-                    {props.valeurVote === note? elStarActive : elStar}
+                    <input type="radio" name="vote" value={ note } onClick={(e) => {voter(e)}}/> 
+                    {props.voteActive === note? elStarActive : elStar}
                 </label>
     })
 
 
     return (
         <div className='votes'>
-            {/* <div className='votes__titre'>Voter</div> */}
             <div className='votes__stars'>
             { domNotes }
             </div>

@@ -42,15 +42,15 @@ function Film()
   // Tracer le changement d'état des stats des votes
   const [moyenne, setMoyenne] = useState(0);
   const [nbVotes, setNbVotes] = useState(0);
-  const [valeurVote, setValeurVote] = useState();
+  const [voteActive, setVoteActive] = useState();
 
   /**
    * Recupere la valeur de note saisie pour gerer le style d'etoile dans le composant Vote
-   * @param {HTMLElement} e 
+   * @param {chiffre} valeur
    */
-  function handleStyleVote(e)
+  function handleStyleVote(valeur='')
   {
-    setValeurVote(parseInt(e.target.value));
+    setVoteActive(parseInt(valeur));
   }
 
   // Mettre à jour le film
@@ -64,8 +64,8 @@ function Film()
 
     if (noteTotale)        
     {
-      // Référence : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
-      let noteMoyenne = (noteTotale.reduce((a, b) => a+b, 0)/ noteTotale.length).toFixed(2),
+      
+      let noteMoyenne = (noteTotale.reduce((a, b) => a+b, 0)/ noteTotale.length).toFixed(2), // Référence : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
           nbVotes = noteTotale.length;
 
       setMoyenne(noteMoyenne);
@@ -102,26 +102,24 @@ function Film()
         })      
   }
 
+  // definir les parametres defauts de transition
+  const transition = 
+  { 
+    duration: 0.5, 
+    ease: 'easeInOut'
+  }; 
 
-    // definir les parametres defauts de transition
-    const transition = 
-    { 
-      duration: 0.5, 
-      ease: 'easeInOut'
-    }; 
-  
-    const variant = 
-    { 
-      hidden:{ opacity: 0, x:-40 },
-      visible:{ opacity: 1, x:0, transition },
-      exit:{ opacity: 0, x:-40, transition },
-    };
+  const variant = 
+  { 
+    hidden:{ opacity: 0, x:-40 },
+    visible:{ opacity: 1, x:0, transition },
+    exit:{ opacity: 0, x:-40, transition },
+  };
 
   return (
     <main className="film">
 
         <div className='film__container'>
-
           <motion.div 
           key='film__img'
           initial='hidden' 
@@ -134,29 +132,24 @@ function Film()
 
           <div className="film__infos">
             <h1>{film.titre} <span className='annee'>({film.annee})</span></h1>
-
             <div className='vote'>
               <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259",}} />
               <span className='bold' data-testid="moyenne">{moyenne}/5,</span>
               <span data-testid="nbVotes"> {nbVotes} { nbVotes === 1 || nbVotes === 0 ? 'vote' : 'votes' }</span>
             </div>
-          
             <p><span className='bold'>Réalisateur : </span>{film.realisation}</p>
             <p>{film.description}</p>
             <p className='genres'>{genres}</p>
-
-            <Vote notes={film.notes} appelAsync={appelAsync} valeurVote={valeurVote} handleStyleVote={handleStyleVote}/>
+            <Vote notes={film.notes} appelAsync={appelAsync} voteActive={voteActive} handleStyleVote={handleStyleVote}/>
           </div>
+        </div>
+        <div className='film__bgImg' style={{backgroundImage:`url(/img/${film.titreVignette})`, opacity: 0.05}}>
+        </div>
 
-        </div>
-        <div className='film__bgImg' style={{backgroundImage:"url(" + `../img/${film.titreVignette}` + ")", opacity: 0.05}}>
-        </div>
         <div className='film__commentaires'>
-
           {context.usager? 
             <Commentaire commentaires={film.commentaires} appelAsync={appelAsync}/>
           : ''}
-
           <div className='film__commentaire-list'>
             {film.commentaires? <h2>Commentaires</h2> : ''}
             {film.commentaires? domCommentaires : ''}
