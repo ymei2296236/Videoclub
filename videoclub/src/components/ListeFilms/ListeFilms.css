@@ -5,15 +5,12 @@
 	.catalogue__liste {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--espace-half);
 		flex: 1;
 
 		.tuile {
 			display: flex;
 			flex: calc(var(--width-mobile) / 2 - var(--espace-quart));
-
 			flex-grow: 0;
-			margin-bottom: var(--espace-1);
 		}
 	}
 }
@@ -23,7 +20,5 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: var(--espace-2);
-
-		padding-right: var(--espace-1);
 	}
 }

@@ -36,7 +36,6 @@ describe('la description d\'un film', () => {
     });
 
 
-
     /**
      * Vérifier si les clés titre, genres, realisation, description, annee et titreVigneete sont présentes pour chaque film reçu de l'API
      */

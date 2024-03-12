@@ -9,7 +9,6 @@ function Vote(props)
 {
     const elStar = <FontAwesomeIcon icon={faStarOutlined} size="lg" style={{color: "#ffc259"}} />;
     const elStarActive = <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259"}} />;
-
     // Tracer le changement de vote
     const [vote, setVote] = useState();
 
@@ -53,7 +52,9 @@ function Vote(props)
         }
     }
 
-    // Créer le dom des notes
+    /**
+     * Créer le dom des notes
+     */
     const notes = [1, 2, 3, 4, 5];
       
     const domNotes = notes.map((note, index)=>
@@ -67,15 +68,15 @@ function Vote(props)
 
 
     return (
-        <div className='votes'>
-            <div className='votes__stars'>
+        <div className='votes mt-sm gap-sm'>
+            <div className='votes__stars gap-lg mr-lg'>
             { domNotes }
             </div>
             <div>
                 <button  onClick={ soumettreNote } className="btn btn-dark">Voter</button>
             </div>
         </div>
-  );
+    );
 }
 
 export default Vote;

@@ -1,6 +1,5 @@
 .notFound {
 	text-align: center;
-	padding: var(--espace-4);
 
 	.notFound__code {
 		font-family: var(--police-titre);

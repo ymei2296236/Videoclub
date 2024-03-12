@@ -1,13 +1,10 @@
 .commenter {
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--espace-1);
 	flex: 45%;
-	margin-top: var(--espace-1);
 	justify-content: flex-end;
 
-	.commenter__textarea {
-		padding: var(--espace-half);
+	.commenter__input {
 		width: 100%;
 		font-family: var(--police-texte);
 	}

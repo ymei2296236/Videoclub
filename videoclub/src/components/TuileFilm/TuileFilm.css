@@ -13,12 +13,5 @@
 }
 
 .liste__info {
-	padding-left: var(--espace-1);
-	padding-right: var(--espace-1);
 	text-align: center;
-	padding: var(--espace-half) var(--espace-1);
-
-	p {
-		margin-top: var(--espace-half);
-	}
 }

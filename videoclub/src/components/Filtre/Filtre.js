@@ -18,12 +18,11 @@ function Filtre(props)
     
     const domFiltres = filtres.map((element, index) => 
     {
-        return  <label key={index} className="filtre-item" data-js-filtre={element} onClick={(e)=>{filtre(e)}}>
+        return  <label key={index} className="filtre-item pt-xs pb-xs pl-md pr-md" data-js-filtre={element} onClick={(e)=>{filtre(e)}}>
                     {element}
                     <input type="radio" name="filtre"/> 
                 </label>
     });
-
 
     
     /**
@@ -59,15 +58,15 @@ function Filtre(props)
 
     return (
         <div>
-            <p className='tri' >
+            <p className='tri pt-sm pb-sm pl-xs gap-sm' >
                 <span 
-                className='tri__titre'>
+                className='tri__titre ml-sm'>
                     Trier par
                 </span> 
                 <span data-testid="filtreActif">{props.filtreActif}</span>
             </p>
 
-            <ul className="filtre">
+            <ul className="filtre ">
                 { domFiltres }
             </ul>
         </div>

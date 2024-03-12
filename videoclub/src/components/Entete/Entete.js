@@ -8,13 +8,11 @@ function Entete(props)
 {
   const context = useContext(AppContext);
 
-
   return (
-    <header className='entete__container'>
+    <header className='entete__container pt-sm pb-sm pl-sm pr-sm'>
 
-      <nav className='entete__nav'>
-
-        <NavLink to="/" className="btn btn-primary">Accueil</NavLink>
+      <nav className='entete__nav mr-lg'>
+        <NavLink to="/" className="btn btn-primary ">Accueil</NavLink>
 
         <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
 
@@ -24,13 +22,11 @@ function Entete(props)
           <button className="btn btn-primary" onClick={props.handleLogout}>Logout</button> 
         </div>
         : '' }
-
-
       </nav>
 
       {!context.usager?
-      <form className='entete__form' onSubmit={props.handleLogin}>
-        <input type="text" name="usager" className='entete__input' placeholder="Nom de l'usager"></input>
+      <form className='entete__form gap-sm' onSubmit={props.handleLogin}>
+        <input type="text" name="usager" className='entete__input pl-xs pr-xs' placeholder="Nom de l'usager"></input>
         <button className="btn btn-secondary">Login</button>
       </form>
       : ''}

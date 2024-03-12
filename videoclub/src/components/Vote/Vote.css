@@ -1,19 +1,6 @@
 .votes {
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: var(--espace-1);
-	gap: var(--espace-1);
-
-	.votes__titre {
-		background-color: var(--coul-texte);
-		color: var(--coul-tertiary);
-		font-family: var(--police-titre);
-		font-size: var(--text-sm);
-		letter-spacing: 1px;
-		text-transform: uppercase;
-		text-align: center;
-		padding: var(--espace-3quarts);
-	}
 
 	.votes__item {
 		pointer-events: auto;
@@ -34,8 +21,6 @@
 
 	.votes__stars {
 		display: flex;
-		gap: var(--espace-2);
 		align-items: center;
-		margin-right: var(--espace-2);
 	}
 }

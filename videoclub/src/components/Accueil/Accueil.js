@@ -6,7 +6,7 @@ function Accueil()
 {
   const donnees = accueil.map((donnee, index) => 
   {
-    return <p key={index}> {donnee} </p>
+    return <p className='mt-sm' key={index}> {donnee} </p>
   })
 
   const transition = {duration: 0.3, ease: 'easeInOut'};
@@ -25,7 +25,7 @@ function Accueil()
       animate='visible'
       exit='exit'
       variants={variant}
-      className='accueil'
+      className={'accueil pt-sm pb-sm pl-lg pr-lg'}
     >
       <div>
         {donnees}

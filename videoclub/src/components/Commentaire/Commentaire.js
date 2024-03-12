@@ -35,8 +35,8 @@ function Commentaire(props)
     }
 
     return (
-        <form className='commenter' onSubmit={soumettreCommentaire}>
-            <textarea className='commenter__textarea' name="commentaire" placeholder='Ajouter votre commentaire' rows="8"></textarea>
+        <form className='commenter mt-sm gap-sm' onSubmit={soumettreCommentaire}>
+            <textarea className='commenter__input pt-xxs pb-xxs pl-xxs pr-xxs' name="commentaire" placeholder='Ajouter votre commentaire' rows="8"></textarea>
             <button className="btn btn-dark">Commenter</button>
         </form>
     );

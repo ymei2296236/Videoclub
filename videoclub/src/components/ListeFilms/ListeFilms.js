@@ -6,12 +6,12 @@ import Filtre from '../Filtre/Filtre';
 import './ListeFilms.css';
 
 
-
 function ListeFilms() 
 {
   const [listeFilms, setListeFilms] = useState([]); // useState fait un rendu dès que l'état changé 
   const [urlListeFilms, setUrlListeFilms] = useState('https://cadriel-front.onrender.com/films');
   const [estCharge, setEstCharge] = useState(false);
+
 
   /**
    * Fait un appel à la base de données suite au changement de listFilms
@@ -39,6 +39,7 @@ function ListeFilms()
     setUrlListeFilms(nouveauUrl);
   }
 
+
   /**
    * Création des tuilesFilm
    */
@@ -50,7 +51,7 @@ function ListeFilms()
               animate={{ opacity:1, x: 0}}
               exit={{ opacity: 0, x:-50 }}
               transition={{ duration: 0.5, delay:index * 0.05}}
-              className="tuile"
+              className="tuile mb-sm"
             >
               <Link data={film} to={`/film/${film.id}`} >
                 <TuileFilm data={film} filtreActif={filtreActif}/>
@@ -58,9 +59,10 @@ function ListeFilms()
             </motion.div>
   })
 
-
-
-  // definir les parametres defauts de transition
+  
+  /**
+   * definir les parametres defauts de transition
+   */
   const transition = 
   { 
     duration: 0.5, 
@@ -78,7 +80,6 @@ function ListeFilms()
   return (
     <main className='catalogue'>
       <div>
-        {/* <p className='catalogue__tri'><span className='btn btn-dark'>Trier par</span> <span>{filtre}</span></p> */}
         <motion.div
           key='filtre'
           initial='hidden' 
@@ -92,7 +93,7 @@ function ListeFilms()
 
       {estCharge ? 
       (
-        <div className="catalogue__liste">
+        <div className="catalogue__liste gap-xs">
           {tuilesFilm}
         </div>
       ) : ('')}

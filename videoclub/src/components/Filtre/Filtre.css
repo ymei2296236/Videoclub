@@ -1,10 +1,8 @@
 .tri {
 	background-color: var(--coul-texte);
 	color: var(--coul-tertiary);
-	padding: var(--espace-3quarts);
 	flex: 1;
 	display: flex;
-	gap: var(--espace-1);
 	align-items: center;
 	min-width: var(--width-mobile);
 
@@ -14,7 +12,6 @@
 		font-size: var(--text-sm);
 		letter-spacing: 1px;
 		text-transform: uppercase;
-		margin-left: var(--espace-1);
 	}
 }
 
@@ -29,7 +26,6 @@
 		user-select: none;
 		align-items: center;
 		justify-content: space-between;
-		padding: var(--espace-half) var(--espace-1half);
 		border-bottom: 1px solid var(--coul-texte);
 	}
 
@@ -42,7 +38,7 @@
 		accent-color: var(--coul-primary);
 		height: 20px;
 		width: 20px;
-		border-bottom-color: #fff;
+		border-bottom-color: var(--coul-tertiary);
 		cursor: pointer;
 	}
 
