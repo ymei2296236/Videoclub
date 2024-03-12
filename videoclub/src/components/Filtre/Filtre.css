@@ -1,4 +1,4 @@
-.catalogue__tri {
+.tri {
 	background-color: var(--coul-texte);
 	color: var(--coul-tertiary);
 	padding: var(--espace-3quarts);
@@ -6,11 +6,19 @@
 	display: flex;
 	gap: var(--espace-1);
 	align-items: center;
+	min-width: var(--width-mobile);
+
+	.tri__titre {
+		color: var(--coul-primary);
+		font-family: var(--police-titre);
+		font-size: var(--text-sm);
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		margin-left: var(--espace-1);
+	}
 }
 
 .filtre {
-	/* padding: var(--espace-1) 0; */
-
 	.filtre-item {
 		display: flex;
 		position: relative;
@@ -36,5 +44,9 @@
 		width: 20px;
 		border-bottom-color: #fff;
 		cursor: pointer;
+	}
+
+	.active {
+		font-weight: bold;
 	}
 }
