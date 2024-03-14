@@ -29,7 +29,9 @@ function Entete(props)
         <input type="text" name="usager" className='entete__input pl-xs pr-xs' placeholder="Nom de l'usager"></input>
         <button className="btn btn-secondary">Login</button>
       </form>
-      : ''}
+      : 
+      <span className="pl-xs">Bonjour, {context.usager}</span>
+    }
 
     </header>
   );
