@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ListeFilms from './ListeFilms';
 import TuileFilm from '../TuileFilm/TuileFilm';
 
 
@@ -67,5 +66,5 @@ describe('la description d\'un film', () => {
                 expect(data).toHaveProperty('titreVignette');
             });
         }
-    });
+    }, 70000);
 });

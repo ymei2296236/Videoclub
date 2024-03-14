@@ -18,7 +18,7 @@ function Entete(props)
 
         {context.usager?
         <div className='entete__menu'>
-          <NavLink to="/admin" className="btn btn-primary">{context.usager}</NavLink>
+          <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
           <button className="btn btn-primary" onClick={props.handleLogout}>Logout</button> 
         </div>
         : '' }

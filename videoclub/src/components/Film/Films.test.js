@@ -3,7 +3,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { AppContext } from '../App/App';
 import Film from './Film';
-import Vote from '../Vote/Vote';
 
 describe('Composant Film', () => 
 {
