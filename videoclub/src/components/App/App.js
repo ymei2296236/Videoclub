@@ -1,12 +1,14 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import {jwtDecode} from 'jwt-decode';
 import Accueil from '../Accueil/Accueil';
 import Admin from '../Admin/Admin';
 import Entete from '../Entete/Entete';
 import Film from '../Film/Film';
 import ListeFilms from '../ListeFilms/ListeFilms';
 import NotFound from '../NotFound/NotFound';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import './App.css';
 
 export const AppContext =  React.createContext();
@@ -17,29 +19,72 @@ function App()
 
   // récupère l'état de logging depuis Local storage au chargement de la page
   let loggingLocal = { usager:'' };
-
+  
   if(localStorage.logging) loggingLocal = JSON.parse(localStorage.logging);
   
   const [logging, setLogging] = useState(loggingLocal);
+  
+  
+  useEffect(() => 
+  {
+    if(localStorage.getItem('logging'))
+    {
+      // on vérifie à chaque changement dans la page si notre jeton est valide
+      try{
+        const token = localStorage.getItem("logging");
+        const decode = jwtDecode(token);
+  
+        // on vérifie si le jeton est expiré
+        if(Date.now() > decode.exp * 1000 ) // Date.now est un milisecond, decode.exp en second
+        {
+          logout();
+        }
+      }
+      catch(erreur)
+      {
+        console.log(erreur);
+      }
+    }
+  }, [])
+  
+  
+  let aLogging = {};
 
   /**
    * Enregistre l'info de logging au Local Storage lorsque l'utilisateur se connecte
    * @param {HTMLElement} e 
    */
-  function login(e)
+  async function login(e)
   {
     e.preventDefault();
 
-    // Enregistre l'info de logging
-    let aLogging = {};
+    const form = e.target;
 
-    if(e.target.usager.value === 'admin') 
-    { 
-      aLogging['usager'] = e.target.usager.value;
+    const body = 
+    {
+      courriel: form.courriel.value,
+      mdp: form.mdp.value
+    };
+
+    const data = 
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }
+
+    const reponse = await fetch('http://localhost:3301/utilisateurs/connexion', data);
+
+    const token = await reponse.json(); 
+
+    if(reponse.status === 200)
+    {
+      aLogging['usager'] = token;
       localStorage.setItem("logging", JSON.stringify(aLogging));
       setLogging(aLogging);
     }
   }
+
 
   /**
    * Gestion de logout
@@ -48,7 +93,7 @@ function App()
   {
     let aLogging = {};
 
-    localStorage.clear();
+    localStorage.removeItem('logging');
     setLogging(aLogging);
   }
 
@@ -61,10 +106,14 @@ function App()
 
       <AnimatePresence mode='wait'>
         <Routes location={location} key={location.key}>
+
+          <Route element={<PrivateRoute/>} >
+            <Route path="/admin" element={<Admin/>} />
+          </Route>
+
           <Route path="/" element={<Accueil />} />
           <Route path="/liste-films" element={<ListeFilms/>} />
           <Route path="/film/:id" element={<Film />} />
-          <Route path="/admin" element={logging? <Admin/> : <Navigate to="/"/>} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>

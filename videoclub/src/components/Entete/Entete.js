@@ -18,7 +18,7 @@ function Entete(props)
 
         {context.usager?
         <div className='entete__menu'>
-          <NavLink to="/admin" className="btn btn-primary">{context.usager}</NavLink>
+          <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
           <button className="btn btn-primary" onClick={props.handleLogout}>Logout</button> 
         </div>
         : '' }
@@ -26,8 +26,9 @@ function Entete(props)
 
       {!context.usager?
       <form className='entete__form gap-sm' onSubmit={props.handleLogin}>
-        <input type="text" name="usager" className='entete__input pl-xs pr-xs' placeholder="Nom de l'usager"></input>
-        <button className="btn btn-secondary">Login</button>
+        <input type="text" name="courriel" className='entete__input pl-xs pr-xs' placeholder="Usager"></input>
+        <input type="password" name="mdp" className='entete__input pl-xs pr-xs' placeholder="Mot de passe"></input>
+        <button className="btn btn-secondary">Connexion</button>
       </form>
       : ''}
 
