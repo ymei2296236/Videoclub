@@ -9,6 +9,7 @@ import Film from '../Film/Film';
 import ListeFilms from '../ListeFilms/ListeFilms';
 import NotFound from '../NotFound/NotFound';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import FormFilm from "../FormFilm/FormFilm";
 import './App.css';
 
 export const AppContext =  React.createContext();
@@ -110,6 +111,7 @@ function App()
           <Route element={<PrivateRoute/>} >
             <Route path="/admin" element={<Admin/>} />
           </Route>
+            <Route path="/admin/ajout-film" element={ <FormFilm/> }/>
 
           <Route path="/" element={<Accueil />} />
           <Route path="/liste-films" element={<ListeFilms/>} />
