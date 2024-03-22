@@ -1,8 +1,22 @@
 import { useState } from "react";
 import './FormFilm.css';
+import  {useNavigate } from "react-router-dom";
 
 function FormFilm()
 {
+    const genres = [
+        "Action",
+        "Aventure",
+        "Comédie",
+        "Drame",
+        "Fantaisie",
+        "Horreur",
+        "Policier",
+        "Science-fiction",
+        "Thriller",
+        "Western",
+    ];
+
     const dataInitial = {
         annee: "",
         description: "",
@@ -20,6 +34,8 @@ function FormFilm()
 
     const [msgErreur, setMsgErreur] = useState();
 
+    const navigate = useNavigate();
+
     /**
      * Détecter la saisie de données 
      * @param {Event} e 
@@ -31,14 +47,48 @@ function FormFilm()
             // const name = e.target.name;
             // const value = e.target.value;
             const {name,value} = e.target;
-            
-            const estValide = e.target.form.checkValidity()? "valid": "invalid"
-            setFormValidity(estValide);
-            
-            // On clone la donnée dans un nouvel objet
-            const donneeModifiees ={...formData,[name]:value };
-            // Met à jour la donnée
-            setFormData(donneeModifiees);
+
+            if(name.startsWith("genre"))
+            {   
+                console.log("genre");
+                const estCoche = e.target.checked;
+
+                let genres = formData.genres || []; 
+
+                // si on décoche et que la valeur est dans le tableau de notre objet film, on l'enlève 
+                if(!estCoche && genres.includes(value))
+                {
+                    genres = genres.filter((genre, index)=>
+                    {
+                        return genre !== value;
+                    })
+                }
+                // si on coche la boite et qu'elle n'est pas dans le tableau de l'objet film, on l'ajoute
+                else if (estCoche && !genres.includes(value))
+                {
+                    genres.push(value);
+                }
+                const donneeModifiees ={...formData, genres }; // la clé de dataInitial "genres" et le tableau de donnée "genres" ont le même nom, donc "genres:genres" peut être raccourci à "genres"
+                setFormData(donneeModifiees);
+
+            }
+            else if (name==="titreVignette")
+            {
+                const nomfichier = e.target.files[0].name;
+                const donneeModifiees ={...formData,titreVignette:nomfichier };
+                // Met à jour la donnée
+                setFormData(donneeModifiees);
+            }   
+            else 
+            {          
+                const estValide = e.target.form.checkValidity()? "valid": "invalid"
+                setFormValidity(estValide);
+                
+                // On clone la donnée dans un nouvel objet
+                const donneeModifiees ={...formData,[name]:value };
+                // Met à jour la donnée
+                setFormData(donneeModifiees);
+            }
         }
         catch(e)
         {
@@ -87,6 +137,9 @@ function FormFilm()
 
             // Réinit l'état de validité
             setFormValidity('invalid');
+
+            // rédiriger la page
+            navigate("/"); 
         }
         else
         {
@@ -116,6 +169,31 @@ function FormFilm()
                     <div className="input-group">
                         <label htmlFor="realisation" >Realisation</label>
                         <input type="text" id="realisation" name="realisation" value={formData.realisation} onChange={onFormDataChange}></input>
+                    </div>
+                    <div>
+                        <p className="input-group">Genres</p>
+                        {
+                            genres.map((element,index) => {
+                                return (
+                                    <div key={index}> 
+                                        <label htmlFor={element}>{element}</label>
+                                        <input 
+                                            type="checkbox" 
+                                            id={element} 
+                                            name={`genre-${element}`}
+                                            value={element}
+                                            onChange={onFormDataChange}
+                                            checked={formData.genres.includes(element)}
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
+                        <input></input>
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="titreVignette">Vignette </label>
+                        <input type="file" name="titreVignette" id="titreVignette"accept=".jpg,.jpeg,.png,.webp" onChange={onFormDataChange}/>
                     </div>
                     <input type='submit' value="Envoyer" disabled={formValidity==="invalid"? "disabled":""}></input>
                 </form>

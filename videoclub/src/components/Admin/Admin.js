@@ -1,3 +1,4 @@
+import FormFilm from '../FormFilm/FormFilm';
 import './Admin.css';
 
 function Admin() {
@@ -5,6 +6,7 @@ function Admin() {
   return (
     <main>
         <div>
+          <FormFilm/>
         </div>
     </main>
   );
