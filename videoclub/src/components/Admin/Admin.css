@@ -2,16 +2,6 @@
 	display: flex;
 	flex-wrap: wrap;
 
-	.label-erreur {
-		color: var(--coul-erreur);
-		font-weight: bold;
-	}
-
-	.msg-erreur {
-		display: flex;
-		flex-direction: column;
-		gap: var(--espace-1);
-	}
 	h1 {
 		flex: 100%;
 	}
@@ -37,4 +27,15 @@
 			}
 		}
 	}
+}
+
+.label-erreur {
+	color: var(--coul-erreur);
+	font-weight: bold;
+}
+
+.msg-erreur {
+	display: flex;
+	flex-direction: column;
+	gap: var(--espace-1);
 }
