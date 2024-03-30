@@ -161,7 +161,7 @@ function Film()
       </div>
 
       <div className='film__commentaires pt-sm pb-sm pl-sm pr-sm gap-xl'>
-        {context.usager? 
+        {context.admin? 
           <Commentaire commentaires={film.commentaires} appelAsync={appelAsync}/>
         : ''}
         <div className='film__listeCommentaires pt-sm pb-sm gap-sm'>

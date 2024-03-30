@@ -21,7 +21,7 @@
 
 h1 {
 	font-family: var(--police-titre);
-	font-size: var(--text-md);
+	font-size: var(--text-lg);
 	color: var(--coul-texte);
 }
 

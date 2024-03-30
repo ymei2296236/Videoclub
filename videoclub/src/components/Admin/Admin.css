@@ -1,0 +1,40 @@
+.admin {
+	display: flex;
+	flex-wrap: wrap;
+
+	.label-erreur {
+		color: var(--coul-erreur);
+		font-weight: bold;
+	}
+
+	.msg-erreur {
+		display: flex;
+		flex-direction: column;
+		gap: var(--espace-1);
+	}
+	h1 {
+		flex: 100%;
+	}
+
+	.container-gestion {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.container-itemsFilm {
+		display: flex;
+		flex-direction: column;
+		gap: var(--espace-1half);
+
+		.item-film {
+			display: flex;
+			gap: var(--espace-1);
+			align-items: center;
+			justify-content: center;
+
+			span {
+				border-bottom: 0.5px solid;
+			}
+		}
+	}
+}

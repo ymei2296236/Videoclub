@@ -25,8 +25,8 @@ function Commentaire(props)
         {
             // Si c'est pas le première commentaire
             if(props.commentaires) aCommentaires = props.commentaires;
-
-            aCommentaires.push({ commentaire: inputCommentaire, usager: context.usager});
+            console.log(context);
+            aCommentaires.push({ commentaire: inputCommentaire, usager: 'usager anonyme'});
             // enregistrer le commentaire dans la BD
             props.appelAsync({commentaires: aCommentaires});
         }

@@ -22,6 +22,7 @@
 	--coul-secondary: #fffbee;
 	--coul-tertiary: #fff;
 	--coul-texte: #0f1c30;
+	--coul-erreur: #c91111;
 
 	/* Les polices et typographies */
 	--police-titre: "Lilita One", serif;

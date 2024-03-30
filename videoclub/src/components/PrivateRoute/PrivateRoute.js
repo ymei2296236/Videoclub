@@ -8,7 +8,7 @@ const PrivateRoute = (()=>
 {
     const contexte = useContext(AppContext);
 
-    if(contexte.usager)
+    if(contexte.admin)
     {
         return <Outlet />;
     }

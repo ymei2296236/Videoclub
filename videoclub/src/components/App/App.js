@@ -9,7 +9,7 @@ import Film from '../Film/Film';
 import ListeFilms from '../ListeFilms/ListeFilms';
 import NotFound from '../NotFound/NotFound';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-// import FormFilm from "../FormFilm/FormFilm";
+import ModificationFilm from "../ModificationFilm/ModificationFilm";
 import './App.css';
 
 export const AppContext =  React.createContext();
@@ -19,7 +19,7 @@ function App()
   const location = useLocation();
 
   // récupère l'état de logging depuis Local storage au chargement de la page
-  let loggingLocal = { usager:'' };
+  let loggingLocal = { admin:'' };
   
   if(localStorage.logging) loggingLocal = JSON.parse(localStorage.logging);
   
@@ -80,7 +80,7 @@ function App()
 
     if(reponse.status === 200)
     {
-      aLogging['usager'] = token;
+      aLogging['admin'] = token;
       localStorage.setItem("logging", JSON.stringify(aLogging));
       setLogging(aLogging);
     }
@@ -110,7 +110,7 @@ function App()
 
           <Route element={<PrivateRoute/>} >
             <Route path="/admin" element={<Admin/>} />
-            {/* <Route path="/admin/ajout-film" element={ <FormFilm/> }/> */}
+            <Route path="/admin/modification-film/:id" element={ <ModificationFilm/> }/>
           </Route>
 
           <Route path="/" element={<Accueil />} />
