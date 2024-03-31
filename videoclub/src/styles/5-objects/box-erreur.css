@@ -1,0 +1,8 @@
+.box-erreur {
+	display: flex;
+	flex-direction: column;
+	gap: var(--espace-half);
+	width: max(calc(var(--width-mobile) - var(--espace-4)), 50vw);
+	color: var(--coul-erreur);
+	margin-top: min(3vw, var(--espace-1half));
+}

@@ -36,3 +36,9 @@
 	color: var(--coul-texte);
 	background-color: var(--coul-primary);
 }
+
+.btn-sm {
+	padding: var(--espace-quart);
+	background-color: var(--coul-secondary);
+	font-size: var(--text-xs);
+}
