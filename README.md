@@ -1,6 +1,6 @@
 # Project Videoclub
 
-This is an online movie club for fans to access to informations of movie, review films and share their comments. The website is fed by data from an online API. [Please click here to check this API projet.](https://github.com/ymei2296236/cadriciel-back)
+This is an online movie club for fans to access to informations of movie, review films and share their comments. The website is fed by data from an online API. [Please click here to check this API projet.](https://github.com/ymei2296236/cadriciel-front)
 
 ![Screenshot](screenshot.png)
 
