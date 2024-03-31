@@ -7,19 +7,38 @@ function Filtre(props)
      * Creer le dom des filtres 
      */
     const filtres =
-    [
-        'Années (moins récent)',
-        'Années (plus récent)',
-        'Nom du film (A-Z)',
-        'Nom du film (Z-A)',
-        'Nom du réalisateur (A-Z)',
-        'Nom du réalisateur (Z-A)'
+    [    
+        {
+            filtre: 'Années (moins récent)',
+            url:  'https://cadriel-front.onrender.com/films?tri=annee'
+        },
+        {
+            filtre: 'Années (plus récent)',
+            url:  'https://cadriel-front.onrender.com/films?tri=annee&ordre=desc'
+        },
+        {
+            filtre: 'Nom du film (A-Z)',
+            url:  'https://cadriel-front.onrender.com/films?tri=titre'
+        },
+        {
+            filtre: 'Nom du film (Z-A)',
+            url:  'https://cadriel-front.onrender.com/films?tri=titre&ordre=desc'
+        },
+        {
+            filtre: 'Nom du réalisateur (A-Z)',
+            url:  'https://cadriel-front.onrender.com/films?tri=realisation'
+        },
+        {
+            filtre: 'Nom du réalisateur (Z-A)',
+            url:  'https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc'
+        }
     ];
+
     
     const domFiltres = filtres.map((element, index) => 
     {
-        return  <label key={index} className="filtre-item pt-xs pb-xs pl-md pr-md" data-js-filtre={element} onClick={(e)=>{filtre(e)}}>
-                    {element}
+        return  <label key={index} className="filtre-item pt-xs pb-xs pl-md pr-md" data-js-filtre={element.filtre} onClick={(e)=>{gereFiltre(e)}}>
+                    {element.filtre}
                     <input type="radio" name="filtre"/> 
                 </label>
     });
@@ -29,30 +48,17 @@ function Filtre(props)
      * Récupère la valeur du filtre cliqué
      * @param {HTMLElement} e 
      */    
-    function filtre(e)
+    function gereFiltre(e)
     {
         let filtre = e.currentTarget.dataset.jsFiltre;
 
-        switch(filtre)
+        filtres.forEach(element => 
         {
-            case 'Nom du film (A-Z)' : 
-                props.handleFiltres('Nom du film (A-Z)', 'https://cadriel-front.onrender.com/films?tri=titre');
-                break;
-            case 'Nom du film (Z-A)' : 
-                props.handleFiltres('Nom du film (Z-A)', 'https://cadriel-front.onrender.com/films?tri=titre&ordre=desc');
-                break;
-            case 'Nom du réalisateur (A-Z)' : 
-                props.handleFiltres('Nom du réalisateur (A-Z)', 'https://cadriel-front.onrender.com/films?tri=realisation');
-                break;
-            case 'Nom du réalisateur (Z-A)' : 
-                props.handleFiltres('Nom du réalisateur (Z-A)' ,'https://cadriel-front.onrender.com/films?tri=realisation&ordre=desc');
-                break;
-            case 'Années (plus récent)' : 
-                props.handleFiltres('Années (plus récent)', 'https://cadriel-front.onrender.com/films?tri=annee&ordre=desc');
-                break;
-            default:
-                props.handleFiltres('Années (moins récent)', 'https://cadriel-front.onrender.com/films?tri=annee');
-        }
+            if(filtre === element.filtre)
+            {
+                props.handleFiltres(element.filtre, element.url);
+            }
+        });
     } 
 
 

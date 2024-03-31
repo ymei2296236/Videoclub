@@ -2,6 +2,8 @@
 	display: flex;
 	flex-wrap: wrap;
 	background-color: var(--coul-primary);
+	align-items: center;
+	justify-content: space-between;
 
 	.entete__nav {
 		display: flex;

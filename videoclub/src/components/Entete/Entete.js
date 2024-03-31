@@ -30,7 +30,9 @@ function Entete(props)
         <input type="password" name="mdp" className='entete__input pl-xs pr-xs' placeholder="Mot de passe"></input>
         <button className="btn btn-secondary">Connexion</button>
       </form>
-      : ''}
+      : 
+      <span className="pl-xs">Bonjour, {context.usager}</span>
+    }
 
     </header>
   );

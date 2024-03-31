@@ -4,11 +4,13 @@ import accueil from './Accueil.json';
 
 function Accueil() 
 {
+  // Bouler les paragraphes pour creer le dom
   const donnees = accueil.map((donnee, index) => 
   {
     return <p className='mt-sm' key={index}> {donnee} </p>
   })
 
+  // Definir les parametres de l'animation
   const transition = {duration: 0.3, ease: 'easeInOut'};
 
   const variant = 
@@ -30,7 +32,6 @@ function Accueil()
       <div>
         {donnees}
       </div>
-
     </motion.main>
   );
 }
