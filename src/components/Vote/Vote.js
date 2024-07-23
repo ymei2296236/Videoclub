@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import './Vote.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,11 +7,13 @@ import { faStar as faStarOutlined } from '@fortawesome/free-regular-svg-icons';
 
 
 function Vote(props) 
-{
+{  
+    const {id} = useParams();
     const elStar = <FontAwesomeIcon icon={faStarOutlined} size="lg" style={{color: "#ffc259"}} />;
     const elStarActive = <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259"}} />;
     // Tracer le changement de vote
     const [vote, setVote] = useState();
+    const url = `http://localhost:3301/films/${id}/vote`;
 
 
     /**
@@ -43,7 +46,7 @@ function Vote(props)
           
             aNotes.push(parseInt(vote));
             // enregistrer la vote dans la BD
-            props.appelAsync({notes: aNotes});
+            props.appelAsync({notes: aNotes, url: url});
 
             // réinitialiser le style des etoiles
             props.handleStyleVote();
@@ -61,7 +64,7 @@ function Vote(props)
     {
         return <label className='votes__item' key={ index }> 
                     {note}
-                    <input type="radio" name="vote" value={ note } onClick={(e) => {voter(e)}}/> 
+                    <input type="radio" name="notes" value={ note } onClick={(e) => {voter(e)}}/> 
                     {props.voteActive === note? elStarActive : elStar}
                 </label>
     })

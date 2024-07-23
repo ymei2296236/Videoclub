@@ -16,22 +16,26 @@ function Entete(props)
 
         <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
 
-        {context.admin?
         <div className='entete__menu'>
-          <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
+        {context.role?
           <button className="btn btn-primary" onClick={props.handleLogout}>Logout</button> 
-        </div>
         : '' }
+
+        {context.role === 'admin'?
+          <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
+        : ''}
+        </div>
+
       </nav>
 
-      {!context.admin?
+      {!context.role?
       <form className='entete__form gap-sm' onSubmit={props.handleLogin}>
         <input type="text" name="courriel" className='entete__input pl-xs pr-xs' placeholder="admin"></input>
         <input type="password" name="mdp" className='entete__input pl-xs pr-xs' placeholder="Mot de passe"></input>
         <button className="btn btn-secondary">Connexion</button>
       </form>
       : 
-      <span className="pl-xs">Bonjour, {context.usager}</span>
+      <span className="pl-xs">Bonjour, {context.courriel}</span>
     }
 
     </header>

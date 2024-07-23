@@ -1,10 +1,13 @@
+import { useParams } from 'react-router-dom';
 import {useContext } from 'react';
 import { AppContext} from '../App/App';
 import './Commentaire.css';
 
 function Commentaire(props) 
 {
+    const {id} = useParams();
     const context = useContext(AppContext);
+    const url = `http://localhost:3301/films/${id}/commentaire`;
 
     // Soumettre la note à la BD
     let aCommentaires=[];
@@ -23,12 +26,12 @@ function Commentaire(props)
         // Si le champ est saisi
         if(inputCommentaire !== undefined && inputCommentaire !== '')
         {
+
             // Si c'est pas le première commentaire
             if(props.commentaires) aCommentaires = props.commentaires;
-            console.log(context);
-            aCommentaires.push({ commentaire: inputCommentaire, usager: 'usager anonyme'});
+            aCommentaires.push({ commentaire: inputCommentaire, usager: context.courriel});
             // enregistrer le commentaire dans la BD
-            props.appelAsync({commentaires: aCommentaires});
+            props.appelAsync({commentaires: aCommentaires, url: url});
         }
         // reinitialiser le champ
         e.target.reset();

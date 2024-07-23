@@ -48,7 +48,6 @@ function ModificationFilm()
     const [formData, setFormData] = useState({});
 
     const [msgErreur, setMsgErreur] = useState();
-    const [msgSuc, setMsgSuc] = useState();
     const [styleErreur, setStyleErreur] = useState([]);
     const champErr = [];
     
@@ -116,7 +115,7 @@ function ModificationFilm()
         }
 
         // Récupèrer le token de l'utilisateur connecté
-        const token = JSON.parse(localStorage.getItem("logging")).admin;
+        const token = JSON.parse(localStorage.getItem("logging")).jeton;
 
         // Prépare le donnée
         const data = {
@@ -141,7 +140,7 @@ function ModificationFilm()
             setMsgErreur();
             
             // Afficher un message de succès 
-            setMsgSuc(reponse.message);
+            alert(reponse.message);
 
             // rédiriger la page
             setTimeout(() => navigate("/Admin"), 2500);
@@ -230,7 +229,6 @@ function ModificationFilm()
                 </form>
 
                 { msgErreur !== "" ? (<div className="box-erreur">{msgErreur}</div>) : "" }
-                { msgSuc !== "" ? (<div className="box-success">{msgSuc}</div>) : "" }
             </div>
         </main>
     )

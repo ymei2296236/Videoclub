@@ -29,7 +29,7 @@ function Admin()
     e.preventDefault();
     const idFilm = e.target.firstElementChild.value;
     // Récupèrer le token de l'utilisateur connecté
-    const token = JSON.parse(localStorage.getItem("logging")).admin;
+    const token = JSON.parse(localStorage.getItem("logging")).jeton;
 
     const oOptions = 
     {

@@ -19,12 +19,11 @@ function App()
   const location = useLocation();
 
   // récupère l'état de logging depuis Local storage au chargement de la page
-  let loggingLocal = { admin:'' };
+  let loggingLocal = { };
   
   if(localStorage.logging) loggingLocal = JSON.parse(localStorage.logging);
   
   const [logging, setLogging] = useState(loggingLocal);
-  
   
   useEffect(() => 
   {
@@ -76,11 +75,11 @@ function App()
 
     const reponse = await fetch('http://localhost:3301/utilisateurs/connexion', data);
 
-    const token = await reponse.json(); 
+    const infoUsager = await reponse.json(); 
 
     if(reponse.status === 200)
     {
-      aLogging['admin'] = token;
+      aLogging = infoUsager;
       localStorage.setItem("logging", JSON.stringify(aLogging));
       setLogging(aLogging);
     }
@@ -104,7 +103,6 @@ function App()
     <AppContext.Provider value={logging}>
 
       <Entete handleLogin={login} handleLogout={logout}/>
-
       <AnimatePresence mode='wait'>
         <Routes location={location} key={location.key}>
 

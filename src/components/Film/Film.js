@@ -15,7 +15,8 @@ function Film()
 
   //Recuperer l'id du film
   const {id} = useParams();
-  const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
+  // const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
+  const urlFilm = `http://localhost:3301/films/${id}`;
   
   /**
    * Afficher les infos du film par son id au chargement de la page
@@ -98,7 +99,7 @@ function Film()
     }
 
     // PUT pour modifier le film 
-    let putFilm = await fetch(urlFilm, oOptions),
+    let putFilm = await fetch(data.url, oOptions),
     // GET pour reaffichier le film 
         getFilm = await fetch(urlFilm);
 
@@ -161,7 +162,7 @@ function Film()
       </div>
 
       <div className='film__commentaires pt-sm pb-sm pl-sm pr-sm gap-xl'>
-        {context.admin? 
+        {context.role? 
           <Commentaire commentaires={film.commentaires} appelAsync={appelAsync}/>
         : ''}
         <div className='film__listeCommentaires pt-sm pb-sm gap-sm'>

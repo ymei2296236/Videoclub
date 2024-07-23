@@ -28,7 +28,6 @@ function FormFilm(props)
     const [formData, setFormData] = useState(dataInitial);
     // const [formValidity, setFormValidity] = useState('invalid');
 
-    const [msgSuc, setMsgSuc] = useState();
     const [msgErreur, setMsgErreur] = useState();
     const [styleErreur, setStyleErreur] = useState([]);
     const champErr = [];
@@ -41,7 +40,6 @@ function FormFilm(props)
     function onFormDataChange(e)
     {
         // réinitialse le message de succès si'l y en a
-        setMsgSuc();
 
         try 
         {        
@@ -104,7 +102,6 @@ function FormFilm(props)
     {
         e.preventDefault();
 
-        setMsgSuc();
 
         /**
          * Vérifier si le formulaire est valide (pour ma culture personnelle)
@@ -116,7 +113,7 @@ function FormFilm(props)
             // }
 
         // Récupèrer le token de l'utilisateur connecté
-        const token = JSON.parse(localStorage.getItem("logging")).admin;
+        const token = JSON.parse(localStorage.getItem("logging")).jeton;
 
         const oOptions = {
             method: "POST",
@@ -145,7 +142,7 @@ function FormFilm(props)
             setFormData(dataInitial);
             
             // Afficher un message de succès 
-            setMsgSuc(reponse.message);
+            alert(reponse.message);
 
             // Réinit l'état de validité (pour ma culture personnelle)
             // setFormValidity('invalid');
@@ -236,7 +233,6 @@ function FormFilm(props)
                 {/* <input type='submit' className='btn btn-dark' value="Envoyer" disabled={formValidity==="invalid"? "disabled":""}></input> */}
             </form>
             { msgErreur !== "" ? (<div className="box-erreur">{msgErreur}</div>) : "" }
-            { msgSuc !== "" ? (<div className="box-success">{msgSuc}</div>) : "" }
         </div>
     )
 }
