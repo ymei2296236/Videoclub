@@ -17,14 +17,11 @@ function Entete(props)
         <NavLink to="/liste-films" className="btn btn-primary">Films</NavLink>
 
         <div className='entete__menu'>
-        {context.role?
-          <button className="btn btn-primary" onClick={props.handleLogout}>Logout</button> 
-        : '' }
-
         {context.role === 'admin'?
           <NavLink to="/admin" className="btn btn-primary">Admin</NavLink>
         : ''}
         </div>
+
 
       </nav>
 
@@ -35,7 +32,12 @@ function Entete(props)
         <button className="btn btn-secondary">Connexion</button>
       </form>
       : 
-      <span className="pl-xs">Bonjour, {context.courriel}</span>
+      <div>
+
+        <span className="pl-xs mr-sm">Bonjour, {context.courriel}</span>
+        <button className="btn btn-primary" onClick={props.handleLogout}>Logout</button> 
+
+      </div>
     }
 
     </header>
