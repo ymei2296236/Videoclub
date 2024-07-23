@@ -7,7 +7,7 @@ function Admin()
 {
 
   const [listeFilms, setListeFilms] = useState([]); // useState fait un rendu dès que l'état changé 
-  const urlListeFilms = 'http://localhost:3301/films?tri=titre';
+  const urlListeFilms = 'https://cadriel-front.onrender.com/films?tri=titre';
 
   /**
    * Fait un appel à la base de données suite au changement de listFilms
@@ -41,7 +41,7 @@ function Admin()
     }
 
     // PUT pour modifier le film 
-    const deleteFilm = await fetch(`http://localhost:3301/films/${idFilm}`, oOptions),
+    const deleteFilm = await fetch(`https://cadriel-front.onrender.com/films/${idFilm}`, oOptions),
     // GET pour reaffichier le film 
       getListeFilms = await fetch(urlListeFilms);
 

@@ -9,8 +9,7 @@ import './ListeFilms.css';
 function ListeFilms() 
 {
   const [listeFilms, setListeFilms] = useState([]); // useState fait un rendu dès que l'état changé 
-  const [urlListeFilms, setUrlListeFilms] = useState('http://localhost:3301/films');
-  // const [urlListeFilms, setUrlListeFilms] = useState('https://cadriel-front.onrender.com/films');
+  const [urlListeFilms, setUrlListeFilms] = useState('https://cadriel-front.onrender.com/films');
   const [estCharge, setEstCharge] = useState(false);
 
 

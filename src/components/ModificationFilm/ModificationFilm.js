@@ -8,7 +8,7 @@ function ModificationFilm()
 {
     //Recuperer l'id du film
     const {id} = useParams();
-    const urlFilm = `http://localhost:3301/films/${id}`;
+    const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
     
     // Declarer l'etat initial de film
     const [film, setFilm] = useState({});

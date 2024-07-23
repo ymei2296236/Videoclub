@@ -16,7 +16,7 @@ function Film()
   //Recuperer l'id du film
   const {id} = useParams();
   // const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
-  const urlFilm = `http://localhost:3301/films/${id}`;
+  const urlFilm = `https://cadriel-front.onrender.com/films/${id}`;
   
   /**
    * Afficher les infos du film par son id au chargement de la page

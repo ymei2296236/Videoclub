@@ -13,7 +13,7 @@ function Vote(props)
     const elStarActive = <FontAwesomeIcon icon={faStarSolid} size="lg" style={{color: "#ffc259"}} />;
     // Tracer le changement de vote
     const [vote, setVote] = useState();
-    const url = `http://localhost:3301/films/${id}/vote`;
+    const url = `https://cadriel-front.onrender.com/films/${id}/vote`;
 
 
     /**

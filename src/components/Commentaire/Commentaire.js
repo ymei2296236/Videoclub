@@ -7,7 +7,7 @@ function Commentaire(props)
 {
     const {id} = useParams();
     const context = useContext(AppContext);
-    const url = `http://localhost:3301/films/${id}/commentaire`;
+    const url = `https://cadriel-front.onrender.com/films/${id}/commentaire`;
 
     // Soumettre la note à la BD
     let aCommentaires=[];
